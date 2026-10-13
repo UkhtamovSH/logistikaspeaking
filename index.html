@@ -1,0 +1,1617 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Logistika speaking: 30 kun</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF1EE;--surface:#FFFFFF;--soft:#F5F7F5;--text:#1E2322;--muted:#5C6865;--line:#D3D9D5;
+  --sign:#0E6B45;--sign-text:#FFFFFF;--amber:#E9A800;--done:#0E6B45;--you:#FFF6D6;--link:#0E6B45;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141817;--surface:#1D2322;--soft:#232A29;--text:#E6EBE8;--muted:#9AA6A2;--line:#2F3836;
+    --sign:#127A50;--sign-text:#F4F7F5;--amber:#F2B705;--done:#3FB47E;--you:#3A3420;--link:#3FB47E;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141817;--surface:#1D2322;--soft:#232A29;--text:#E6EBE8;--muted:#9AA6A2;--line:#2F3836;
+  --sign:#127A50;--sign-text:#F4F7F5;--amber:#F2B705;--done:#3FB47E;--you:#3A3420;--link:#3FB47E;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Overpass",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.55}
+.wrap{max-width:800px;margin:0 auto;padding:20px 16px 48px}
+.sign{background:var(--sign);color:var(--sign-text);border-radius:12px;padding:20px 22px;border:3px solid var(--sign-text);box-shadow:0 0 0 3px var(--sign);margin:3px}
+.sign h1{margin:0;font-weight:800;font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.1}
+.sign p{margin:6px 0 0;opacity:.92}
+.meter{display:flex;align-items:center;gap:12px;margin-top:16px}
+.bar{flex:1;height:10px;background:rgba(255,255,255,.25);border-radius:5px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--amber);width:0;transition:width .4s ease}
+.exit{background:var(--amber);color:#1E2322;font-weight:800;border-radius:6px;padding:3px 10px 1px;white-space:nowrap}
+.tabs{display:flex;gap:4px;margin:24px 0 18px;border-bottom:2px solid var(--line);overflow-x:auto}
+.tabs button{font:inherit;font-weight:600;background:none;border:0;color:var(--muted);padding:10px 14px 8px;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--amber)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+[hidden]{display:none!important}
+
+.dayhead{display:flex;align-items:flex-start;gap:14px;margin-bottom:10px}
+.marker{flex:none;width:58px;background:var(--sign);color:var(--sign-text);border-radius:6px;text-align:center;padding:5px 0 3px;font-weight:800;line-height:1.05;border:2px solid var(--sign-text);box-shadow:0 0 0 2px var(--sign);margin:2px}
+.marker small{display:block;font-weight:600;font-size:.72rem;opacity:.9}
+.marker span{font-size:1.6rem}
+.week{color:var(--muted);font-size:.92rem}
+h2{margin:2px 0 0;font-size:1.45rem;line-height:1.2}
+.schedule{color:var(--muted);font-size:.92rem;margin:0 0 14px}
+.tip{background:var(--surface);border-left:4px solid var(--amber);padding:10px 14px;border-radius:4px;margin:0 0 14px}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.95rem}
+.toolbar label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.toolbar select{font:inherit;padding:3px 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--text)}
+.toolbar input{accent-color:var(--done);width:18px;height:18px}
+
+.blk{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:14px;overflow:hidden}
+.bh{display:flex;gap:12px;align-items:center;padding:12px 16px;background:var(--soft);border-bottom:1px solid var(--line);cursor:pointer}
+.bh input{width:22px;height:22px;accent-color:var(--done);flex:none;margin:0;cursor:pointer}
+.bh strong{flex:1;font-size:1.05rem}
+.bh em{font-style:normal;color:var(--muted);font-size:.9rem;white-space:nowrap}
+.blk.done .bh strong{text-decoration:line-through;color:var(--muted)}
+.bb{padding:14px 16px}
+.how{color:var(--muted);font-size:.95rem;margin:0 0 10px}
+
+.ph{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.ph:last-child{border-bottom:0}
+.ph .en{font-weight:600}
+.ph .uz{color:var(--muted);font-size:.93rem}
+.say{flex:none;font:inherit;font-size:.85rem;font-weight:600;border:1px solid var(--line);background:var(--soft);color:var(--text);border-radius:6px;padding:3px 8px 1px;cursor:pointer;min-width:34px}
+.say:hover{border-color:var(--sign)}
+
+.dlg{border:1px solid var(--line);border-radius:8px;margin-bottom:14px;overflow:hidden}
+.dlg-h{padding:10px 12px;background:var(--soft);border-bottom:1px solid var(--line)}
+.dlg-h b{display:block}
+.dlg-h span{color:var(--muted);font-size:.92rem}
+.dlg-c{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.btn{font:inherit;font-weight:600;font-size:.9rem;padding:6px 12px 4px;border-radius:7px;border:2px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
+.btn.primary{background:var(--sign);color:var(--sign-text);border-color:var(--sign)}
+.btn:disabled{opacity:.4;cursor:default}
+.ln{display:grid;grid-template-columns:110px 1fr auto;gap:8px;padding:7px 12px;border-bottom:1px solid var(--line);align-items:start}
+.ln:last-child{border-bottom:0}
+.ln .who{color:var(--muted);font-size:.85rem;font-weight:600;padding-top:2px}
+.ln.you{background:var(--you)}
+.ln.now{outline:2px solid var(--amber);outline-offset:-2px}
+.hidemine .ln.you:not(.shown) .tx{filter:blur(6px);cursor:pointer;user-select:none}
+@media (max-width:520px){.ln{grid-template-columns:1fr auto}.ln .who{grid-column:1/-1;padding:0}}
+
+.sc{padding:8px 0;border-bottom:1px solid var(--line)}
+.sc:last-child{border-bottom:0}
+ol.steps{margin:0;padding-left:22px}
+ol.steps li{margin-bottom:4px}
+
+.complete{margin-top:4px;padding:10px 14px;border-left:4px solid var(--amber);background:var(--surface);border-radius:4px;font-weight:600}
+.navrow{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.navrow .btn{font-size:1rem;padding:10px 16px 8px}
+
+.wk{margin-bottom:22px}
+.wk h3{display:flex;justify-content:space-between;gap:10px;margin:0 0 8px;font-size:1rem}
+.wk h3 em{font-style:normal;color:var(--muted);font-weight:400}
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+@media (max-width:560px){.tiles{grid-template-columns:repeat(3,1fr)}}
+.tile{text-align:left;padding:8px 9px 6px;border:1px solid var(--line);background:var(--surface);border-radius:6px;font:inherit;font-size:.8rem;line-height:1.25;color:var(--text);cursor:pointer;min-height:84px;display:flex;flex-direction:column;gap:4px}
+.tile b{font-size:1.05rem}
+.tile .p{margin-top:auto;color:var(--muted)}
+.tile.done{background:var(--sign);color:var(--sign-text);border-color:var(--sign)}
+.tile.done .p{color:var(--sign-text);opacity:.85}
+.tile.cur{outline:3px solid var(--amber);outline-offset:1px}
+
+.search{width:100%;font:inherit;padding:10px 14px 8px;border:2px solid var(--line);border-radius:8px;background:var(--surface);color:var(--text);margin-bottom:6px}
+.count{color:var(--muted);font-size:.92rem;margin:0 0 12px}
+.bank{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 14px}
+.bank .ph small{color:var(--muted)}
+.note{color:var(--muted);font-size:.9rem}
+.foot{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+.linkbtn{font:inherit;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;padding:4px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="sign">
+    <h1>Logistika speaking</h1>
+    <p>30 kun, kuniga 3 soat. 90 ta dialog, 300 ta ibora, 150 ta erkin gapirish vaziyati.</p>
+    <div class="meter"><div class="bar"><i id="bar"></i></div><span class="exit" id="exit">0 / 30</span></div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="today">Bugun</button>
+    <button role="tab" aria-selected="false" data-tab="plan">Reja</button>
+    <button role="tab" aria-selected="false" data-tab="bank">Barcha iboralar</button>
+  </nav>
+
+  <section id="today"></section>
+  <section id="plan" hidden></section>
+  <section id="bank" hidden>
+    <input class="search" id="q" type="search" placeholder="Qidirish: detention, ETA, kechikish..." aria-label="Ibora qidirish">
+    <p class="count" id="bcount"></p>
+    <div class="bank" id="blist"></div>
+  </section>
+
+  <div class="foot">
+    <span id="ttsnote">Progress shu brauzerda saqlanadi. Ovoz brauzerning o'zidan ishlaydi.</span>
+    <button class="linkbtn" id="reset">Progressni tozalash</button>
+  </div>
+</div>
+
+<script>
+const WHO = {Y:"Siz (dispetcher)",B:"Broker",D:"Haydovchi",S:"Ombor xodimi",R:"Qabul qiluvchi",A:"Buxgalteriya",I:"Intervyuer",C:"Hamkasb"};
+
+const WEEKS = [
+{t:"Telefon va yuk topish", d:[
+{t:"Telefonda tanishtiruv va odob",
+ tip:`Harflashda har bir harfga so'z qo'shing: "S as in Sam, T as in Tom". Raqamlarni guruhlab ayting: 555 – 212 – 3456 → "five five five, two one two, three four five six".`,
+ p:`Hi, this is Alex from Star Trucking.|Salom, men Star Trucking'dan Aleks.
+How are you doing today?|Bugun ishlaringiz qalay?
+Who am I speaking with?|Kim bilan gaplashyapman?
+Could you spell that for me?|Harflab ayta olasizmi?
+Sorry, I didn't catch that.|Kechirasiz, eshitmay qoldim.
+Could you speak a little slower, please?|Biroz sekinroq gapira olasizmi?
+Let me put you on hold for a second.|Bir soniya kutib turing.
+Thanks for holding.|Kutganingiz uchun rahmat.
+What's the best number to reach you?|Sizga qaysi raqam orqali bog'lansam bo'ladi?
+I'll call you right back.|Hozir qayta qo'ng'iroq qilaman.`,
+ g:[["Brokerga birinchi qo'ng'iroq","Siz DAT'da ko'rgan yuk bo'yicha brokerga qo'ng'iroq qilyapsiz.",
+`B|Thank you for calling Blue Line Logistics, this is Sarah.
+Y|Hi Sarah, this is Alex from Star Trucking. How are you doing today?
+B|I'm good, thanks. How can I help you?
+Y|I'm calling about one of your loads on DAT.
+B|Sure. Do you have the reference number?
+Y|Yes, it's 48213.
+B|Okay, give me a second. Got it. Chicago to Dallas, right?
+Y|That's right. Is it still available?
+B|Yes, it is. What's your MC number?
+Y|It's 123456.
+B|Thank you. Let me pull you up in our system.`],
+ ["Ism va emailni harflash","Broker ismingiz, emailingiz va telefon raqamingizni so'rayapti.",
+`B|Can I get your name and email, please?
+Y|Sure. My name is Alex, A-L-E-X.
+B|And your email?
+Y|It's alex at startrucking dot com.
+B|Sorry, was that S as in Sam?
+Y|Yes, S as in Sam, T as in Tom. Startrucking, all one word.
+B|Got it. And a callback number?
+Y|Five five five, two one two, three four five six.
+B|Perfect, thank you.
+Y|Thank you. Have a great day.`],
+ ["Eshitmay qoldim","Aloqa yomon, broker tez gapiryapti.",
+`B|The load picks up tomorrow in Joliet at six and delivers Thursday in Memphis.
+Y|Sorry, I didn't catch that. Could you speak a little slower, please?
+B|Of course. Pickup is tomorrow at 6 AM in Joliet, Illinois.
+Y|Joliet, Illinois. Could you spell Joliet for me?
+B|J-O-L-I-E-T.
+Y|Thank you. And the delivery?
+B|Thursday, Memphis, Tennessee.
+Y|Got it. Let me put you on hold for a second, I need to check with my driver.
+B|No problem.
+Y|Thanks for holding. The driver can make it.`]],
+ s:[`Brokerga qo'ng'iroq qiling: o'zingizni tanishtiring, kompaniya va MC raqamingizni ayting, DAT'dagi yuk haqida so'rang.`,
+ `Broker ismingiz va kompaniya nomini so'radi. Ikkalasini "as in" usulida harflab bering.`,
+ `Telefon raqamingiz va emailingizni ingliz tilida aniq ayting. 3 marta takrorlang.`,
+ `Broker juda tez gapirdi va siz shahar nomini tushunmadingiz. Odob bilan qaytarishni va harflashni so'rang.`,
+ `Qo'ng'iroqni odob bilan yakunlang: haydovchi bilan gaplashib, 10 daqiqada qayta qo'ng'iroq qilishga va'da bering.`]},
+
+{t:"Yuk hali bormi?",
+ p:`Is this load still available?|Bu yuk hali bormi?
+Has it been covered?|Unga allaqachon mashina topildimi?
+Do you have anything similar?|O'xshash yukingiz bormi?
+What's the pickup date and time?|Pickup sanasi va vaqti qachon?
+When does it deliver?|Qachon yetkazilishi kerak?
+Is it a live load or drop and hook?|Yuk kutib ortiladimi yoki trailer almashtiriladimi?
+Is the appointment set?|Vaqt belgilanganmi?
+Is it first come, first served?|Kelish tartibidami?
+Are there any extra stops?|Qo'shimcha to'xtashlar bormi?
+Can you send me the details by email?|Tafsilotlarni emailga yubora olasizmi?`,
+ g:[["Yuk band bo'lib qolgan","Siz so'ragan yukka mashina topilgan. O'xshash yuk so'raysiz.",
+`Y|Hi, this is Alex from Star Trucking. I'm calling about your load from Atlanta to Orlando.
+B|Sorry, that one's already covered.
+Y|No problem. Do you have anything similar going out of Atlanta?
+B|I have one from Atlanta to Jacksonville. It picks up tomorrow.
+Y|What time is the pickup?
+B|Anytime between 8 and 2.
+Y|And when does it deliver?
+B|Next morning, appointment at 7 AM.
+Y|Sounds good. Can you send me the details by email?
+B|Sure, what's your email?`],
+ ["Live load yoki drop and hook","Yuk qanday ortilishi va to'xtashlarni aniqlaysiz.",
+`Y|Is this a live load or drop and hook?
+B|It's a live load at pickup and a drop at delivery.
+Y|How long does loading usually take?
+B|About two hours.
+Y|Are there any extra stops?
+B|One extra stop in Macon.
+Y|Is the stop paid?
+B|Yes, it's included in the rate.
+Y|Okay. Is the appointment already set?
+B|Pickup is first come, first served. Delivery appointment is set.`],
+ ["Ertangi kunga yuk","Haydovchingiz ertaga Dallas'da bo'sh bo'ladi.",
+`Y|Good morning. Do you have any loads out of Dallas for tomorrow?
+B|What equipment do you have?
+Y|A 53-foot dry van.
+B|Where do you want to go?
+Y|Anywhere north, ideally towards Chicago.
+B|I have Dallas to Kansas City, about 500 miles.
+Y|What's the pickup time?
+B|Tomorrow at 9 AM.
+Y|Okay. How much are you paying?
+B|Fourteen hundred.
+Y|Let me check with my driver and call you back in five minutes.`]],
+ s:[`Siz qo'ng'iroq qilgan yukka mashina topilib bo'lgan. O'xshash yuk so'rang va uning vaqtlarini aniqlang.`,
+ `Yuk live load yoki drop and hook ekanini, ortish qancha vaqt olishini so'rang.`,
+ `Brokerdan ertangi kunga Houston'dan chiqadigan dry van yuk so'rang.`,
+ `Yo'lda qo'shimcha to'xtash bor. U to'lanadimi, qayerda ekanini aniqlang.`,
+ `Tafsilotlarni emailga yuborishni so'rang va emailingizni harflab ayting.`]},
+
+{t:"Yuk tafsilotlari",
+ p:`What's the commodity?|Yuk nima?
+How much does it weigh?|Og'irligi qancha?
+How many pallets?|Nechta palet?
+Is it floor loaded or palletized?|Yuk polga terilganmi yoki paletdami?
+Do we need load locks or straps?|Mahkamlash moslamasi yoki kamar kerakmi?
+Is it stackable?|Ustma-ust qo'ysa bo'ladimi?
+Is it a full truckload or a partial?|To'liq yukmi yoki qisman?
+How many feet of trailer does it take?|Trailerning necha futini egallaydi?
+That's too heavy for us.|Bu biz uchun juda og'ir.
+We can't go over the legal weight.|Qonuniy og'irlikdan oshira olmaymiz.`,
+ g:[["Dry van tafsilotlari","Yuk haqida to'liq ma'lumot olasiz.",
+`Y|Can you tell me more about the load? What's the commodity?
+B|Canned food.
+Y|How much does it weigh?
+B|Forty-two thousand pounds.
+Y|How many pallets?
+B|Twenty-four pallets.
+Y|Is it floor loaded or palletized?
+B|Palletized.
+Y|Do we need load locks?
+B|Yes, the driver needs two load locks.
+Y|No problem, we have them.`],
+ ["Juda og'ir yuk","Yuk og'irligi sizning chegarangizdan oshgan.",
+`B|The load is forty-six thousand pounds.
+Y|That's a little heavy for us. Our max is forty-four thousand.
+B|Can't you make it work?
+Y|I'm sorry, we can't go over the legal weight. It's a safety issue.
+B|I understand. I might be able to take two pallets off.
+Y|That would work. What would the weight be then?
+B|About forty-two five.
+Y|Perfect, that's fine for us.`],
+ ["Qisman yuk","Kichik yuk, trailerda boshqa yukka joy qoladi.",
+`Y|Is it a full truckload?
+B|No, it's a partial. Eight pallets, ten thousand pounds.
+Y|How many feet of trailer does it take?
+B|About sixteen feet.
+Y|Can we add another partial on the same truck?
+B|Yes, as long as the delivery is on time.
+Y|Great. Is it stackable?
+B|No, it's not stackable.
+Y|Got it, thank you.`]],
+ s:[`Brokerdan yukning tovar turi, og'irligi, paletlar soni va mahkamlash kerakligini ketma-ket so'rang.`,
+ `Yuk 47,000 lbs. Nega olmasligingizni xushmuomalalik bilan tushuntiring va yechim taklif qiling.`,
+ `Yuk qisman (partial). Trailerda qancha joy egallashini va boshqa yuk qo'shish mumkinligini so'rang.`,
+ `Yuk ustma-ust qo'yiladimi, palet yoki polga terilganmi, aniqlang.`,
+ `Haydovchiga qo'ng'iroq qilib, yukning barcha tafsilotlarini o'zingiz tushuntirib bering.`]},
+
+{t:"Narx bo'yicha savdolashish (asosiy)",
+ tip:`Narxlar qisqa aytiladi: $1,650 = "sixteen fifty", $2,100 = "twenty-one hundred" yoki "two thousand one hundred", $1,775 = "seventeen seventy-five", $2,000 = "two grand" (norasmiy).`,
+ p:`What's the rate on this one?|Bunisining narxi qancha?
+How much are you paying?|Qancha to'layapsiz?
+Can you do better?|Yaxshiroq narx bera olasizmi?
+What's the best you can do?|Eng yaxshi qancha bera olasiz?
+We're looking for two thousand on this.|Buning uchun 2,000 kutyapmiz.
+Can we meet in the middle?|O'rtasida kelishamizmi?
+Is there any room on the rate?|Narxda o'zgartirish imkoni bormi?
+That works for us.|Bu bizga to'g'ri keladi.
+We'll take it.|Olamiz.
+That's the lowest we can go.|Bundan pastiga tusha olmaymiz.`,
+ g:[["Oddiy counter offer","Broker narx aytdi, siz yuqoriroq so'raysiz.",
+`Y|How much are you paying on this load?
+B|Sixteen fifty.
+Y|It's 650 miles. Can you do eighteen fifty?
+B|That's too high. I can do seventeen hundred.
+Y|Can we meet in the middle at seventeen seventy-five?
+B|Okay, seventeen seventy-five. Deal.
+Y|Deal. Please send the rate con.`],
+ ["Broker sizdan narx so'radi","Siz birinchi bo'lib narx aytasiz va sababini keltirasiz.",
+`B|What rate do you need?
+Y|We're looking for twenty-two hundred.
+B|My budget is nineteen hundred.
+Y|Is there any room on the rate? Our truck is right next to the shipper. We can pick up in an hour.
+B|I can go to two thousand fifty.
+Y|Twenty-one and we'll take it.
+B|Okay, twenty-one hundred.
+Y|Thank you. I'll send you the truck info.`],
+ ["Yaxshi narx, tez kelishish","Narx yaxshi, darhol olasiz.",
+`Y|What's the rate?
+B|Twenty-eight hundred.
+Y|How many miles is it?
+B|About nine hundred and fifty.
+Y|That works for us. We'll take it.
+B|Great. Let me get your MC number.
+Y|It's 123456.
+B|Thanks. I'll send the rate con in a few minutes.`]],
+ s:[`Ovoz chiqarib ayting: $1,650, $2,100, $1,775, $2,450, $3,200, $980. Har birini 5 martadan.`,
+ `Broker $1,500 taklif qildi, masofa 700 mil. Yuqoriroq narx so'rang va kelishing.`,
+ `Broker "What rate do you need?" dedi. Narxingizni ayting va nega shuncha ekanini tushuntiring.`,
+ `O'rtasida kelishishni taklif qiling: siz $2,300, broker $2,000 dedi.`,
+ `Narx yaxshi. Darhol kelishib, rate con so'rang.`]},
+
+{t:"Qiyin savdolashish",
+ p:`That's way too low.|Bu juda past.
+The rate is firm.|Narx qat'iy.
+I can't go any lower.|Bundan pastga tusha olmayman.
+That doesn't cover our costs.|Bu xarajatlarimizni qoplamaydi.
+Fuel is very expensive right now.|Hozir yoqilg'i juda qimmat.
+The market rate on this lane is higher.|Bu yo'nalishda bozor narxi yuqoriroq.
+We have a lot of deadhead to get there.|U yerga borish uchun ko'p bo'sh yo'l bor.
+Is that your final offer?|Bu oxirgi taklifingizmi?
+We'll pass on this one.|Bu yukdan voz kechamiz.
+If anything changes, please call me back.|Biror narsa o'zgarsa, qayta qo'ng'iroq qiling.`,
+ g:[["Juda past narxdan voz kechish","Broker juda past narx taklif qilyapti.",
+`B|I can offer twelve hundred.
+Y|That's way too low. It's 700 miles.
+B|That's what the shipper is paying.
+Y|The market rate on this lane is closer to two dollars a mile.
+B|I can't go any higher right now.
+Y|Then we'll pass on this one. If anything changes, please call me back.
+B|Will do.`],
+ ["Deadhead orqali dalil","Siz bo'sh yo'lni sabab qilib, narx so'raysiz.",
+`Y|We need twenty-four hundred on this.
+B|That's a lot for 800 miles.
+Y|We have 120 miles of deadhead to get there.
+B|Okay, I can do twenty-two.
+Y|Is that your final offer?
+B|Yes, that's the best I can do.
+Y|Alright, we'll take it.`],
+ ["Broker qayta qo'ng'iroq qildi","Oldin voz kechgan yukingiz bo'yicha broker o'zi qaytdi.",
+`B|Hi Alex, it's Mike from Summit Freight. About that load from Denver.
+Y|Yes, I remember.
+B|Can your truck still do it for nineteen hundred?
+Y|We said twenty-one. The truck is still available.
+B|I can do two thousand.
+Y|Two thousand fifty and it's yours.
+B|Fine, two thousand fifty.
+Y|Thank you, Mike. Please send me the rate con.`]],
+ s:[`Broker $1,100 taklif qildi (650 mil). Xushmuomalalik bilan rad eting va qayta qo'ng'iroq qilishni so'rang.`,
+ `Yoqilg'i narxini dalil qilib, yuqoriroq narx so'rang.`,
+ `Broker "The rate is firm" dedi. Oxirgi taklifmi ekanini aniqlang va qaror qiling.`,
+ `Bo'sh yo'l 150 mil. Shuni sabab qilib narxni oshirishni so'rang.`,
+ `Kecha voz kechgan broker qayta qo'ng'iroq qildi. Narxni kelishing.`]},
+
+{t:"Booking va rate con",
+ p:`Please send the rate con to my email.|Rate con'ni emailimga yuboring.
+I'll sign it and send it back.|Imzolab qaytarib yuboraman.
+I received the rate con.|Rate con'ni oldim.
+The rate on the rate con is wrong.|Rate con'dagi narx noto'g'ri.
+Can you add detention to the rate con?|Rate con'ga detention qo'sha olasizmi?
+Please update the rate con.|Rate con'ni yangilang.
+What's the load number?|Load raqami nechchi?
+Who is my point of contact?|Bog'lanish uchun mas'ul kim?
+What's your after-hours number?|Ish vaqtidan keyingi raqamingiz?
+Truck number is 101, trailer number is 5320.|Truck raqami 101, trailer raqami 5320.`,
+ g:[["Truck ma'lumotlarini berish","Narx kelishildi, broker haydovchi ma'lumotlarini so'raydi.",
+`B|Okay, I need the driver's name and number.
+Y|Driver's name is Mike Johnson. His number is five five five, eight one two, four four three nine.
+B|Truck and trailer numbers?
+Y|Truck 101, trailer 5320.
+B|Thanks. I'll send the rate con in a few minutes.
+Y|Great. What's the load number?
+B|It's 77490.
+Y|Got it. Who's my point of contact after hours?
+B|Our night team. The number is on the rate con.`],
+ ["Rate con'da xato","Rate con'dagi narx kelishilganidan past.",
+`Y|Hi, I received the rate con, but the rate is wrong.
+B|What does it say?
+Y|It says nineteen hundred. We agreed on two thousand fifty.
+B|Oh, sorry about that. I'll fix it.
+Y|Also, can you add detention after two hours?
+B|Sure, it's fifty dollars an hour after two hours.
+Y|Please update the rate con and send it again.
+B|Done. Check your email.
+Y|Got it. I'll sign it and send it back.`],
+ ["Imzolashdan oldin tekshirish","Siz rate con'dagi barcha shartlarni ovoz chiqarib tasdiqlaysiz.",
+`Y|Before I sign, let me confirm the details.
+B|Go ahead.
+Y|Pickup tomorrow at 7 AM in Dallas. Delivery Friday at 9 AM in Atlanta.
+B|Correct.
+Y|The rate is twenty-one hundred, all in.
+B|Yes.
+Y|And the driver needs to call in when loaded?
+B|Yes, and send a picture of the BOL.
+Y|Perfect. Signed and sent.`]],
+ s:[`Brokerga haydovchining ismi, telefon raqami, truck va trailer raqamlarini ayting.`,
+ `Rate con'dagi narx $200 kam. Xatoni tushuntirib, tuzatishni so'rang.`,
+ `Imzolashdan oldin pickup, delivery, narx va qo'shimcha shartlarni ovoz chiqarib tasdiqlang.`,
+ `Rate con'ga detention va qo'shimcha to'xtash narxini qo'shishni so'rang.`,
+ `Ish vaqtidan keyin kim bilan bog'lanishni va load raqamini so'rang.`]}
+]},
+{t:"Hujjatlar, haydovchi va pickup", d:[
+{t:"Carrier ro'yxatdan o'tishi",
+ p:`Are we set up with you?|Biz sizda ro'yxatdan o'tganmizmi?
+Please send me the setup link.|Ro'yxatdan o'tish havolasini yuboring.
+I'll send you our carrier packet.|Carrier packet'imizni yuboraman.
+We have our W-9 and COI ready.|W-9 va sug'urta hujjatimiz tayyor.
+Our liability insurance is one million.|Javobgarlik sug'urtamiz bir million.
+Our cargo insurance is one hundred thousand.|Yuk sug'urtamiz yuz ming.
+How long does the setup take?|Ro'yxatdan o'tish qancha vaqt oladi?
+Our authority has been active for two years.|Ruxsatimiz ikki yildan beri faol.
+We're a small fleet with ten trucks.|Biz o'nta mashinali kichik kompaniyamiz.
+We have a clean safety record.|Xavfsizlik tariximiz toza.`,
+ g:[["Ro'yxatdan o'tmagansiz","Broker sizni tizimida topa olmadi.",
+`B|I don't see you in our system. Are you set up with us?
+Y|Not yet. Can you send me the setup link?
+B|Sure, it's through our online portal. It takes about ten minutes.
+Y|Great. What documents do you need?
+B|MC authority, W-9, and certificate of insurance.
+Y|No problem, we have everything ready.
+B|Once you're approved, I'll send the rate con.`],
+ ["Sug'urta yetmaydi","Yuk qimmat, sizning yuk sug'urtangiz kamlik qiladi.",
+`B|What's your insurance coverage?
+Y|One million liability and one hundred thousand cargo.
+B|This load is worth two hundred thousand. We need higher cargo coverage.
+Y|I understand. I can ask our agent to add coverage for this load.
+B|How long would that take?
+Y|Usually about an hour.
+B|Okay, send me the updated certificate when you have it.`],
+ ["Yangi kompaniya","Ruxsatingiz bir yildan kam, broker ikkilanmoqda.",
+`B|How long has your authority been active?
+Y|Eight months.
+B|We usually need at least one year.
+Y|I understand. We have a clean safety record and no claims.
+B|Let me check with my manager.
+Y|Thank you. I can also send you references from other brokers.
+B|That would help.`]],
+ s:[`Brokerda ro'yxatdan o'tmagansiz. Havola va kerakli hujjatlar ro'yxatini so'rang.`,
+ `Kompaniyangizni tanishtiring: nechta mashina, ruxsat qachondan, qaysi hududlarda ishlaysiz.`,
+ `Sug'urta miqdorlaringizni ayting va broker so'rasa, qo'shimcha sug'urta taklif qiling.`,
+ `Broker yangi kompaniyalar bilan ishlamaydi. Uni toza xavfsizlik tarixingiz bilan ishontiring.`,
+ `Hujjatlarni emailga yuborganingizni aytib, qachon tasdiqlanishini so'rang.`]},
+
+{t:"Haydovchiga yuk berish",
+ p:`I've got a load for you.|Senga yuk topdim.
+Pickup is tomorrow at 7 AM.|Pickup ertaga 7:00 da.
+It's about 500 miles.|Taxminan 500 mil.
+I'll text you the address.|Manzilni SMS qilib yuboraman.
+How many hours do you have left?|Necha soating qoldi?
+The load number is 77490.|Load raqami 77490.
+Make sure you get the seal number.|Plomba raqamini albatta ol.
+Take a picture of the BOL.|BOL'ni rasmga ol.
+Call me when you're loaded.|Yuk ortilgach qo'ng'iroq qil.
+Drive safe.|Ehtiyot bo'lib hayda.`,
+ g:[["Yangi yuk haqida xabar","Haydovchiga ertangi yukni tushuntirasiz.",
+`Y|Hey Mike, how's it going?
+D|Good. Do you have something for me?
+Y|Yes, I've got a load for you. Dallas to Atlanta, picks up tomorrow at 7 AM.
+D|How many miles?
+Y|About 780 loaded and 20 deadhead.
+D|Sounds good. What's the commodity?
+Y|Paper products, forty thousand pounds.
+D|Okay. Send me the address.
+Y|I'll text it to you right now. Call me when you're loaded.`],
+ ["Soatlarni tekshirish","Yukni band qilishdan oldin haydovchining soatlarini aniqlaysiz.",
+`Y|Before I book this, how many hours do you have left?
+D|About four hours today.
+Y|Okay. Can you be at the shipper by 6 AM tomorrow?
+D|Yes, if I start my break now.
+Y|Perfect. Take your ten-hour break and I'll send you the details.
+D|Thanks.`],
+ ["Ko'rsatmalar","Pickupda nima qilish kerakligini aytasiz.",
+`Y|A few things for this load.
+D|Go ahead.
+Y|Check in with the load number, 77490.
+D|Got it.
+Y|Make sure you get the seal number and take a picture of the BOL.
+D|Okay.
+Y|And send me a picture of the load before they seal the trailer.
+D|Will do.
+Y|Drive safe.`]],
+ s:[`Haydovchiga yangi yukni tushuntiring: qayerdan, qayerga, qachon, necha mil, nima yuk.`,
+ `Haydovchidan necha soati qolganini so'rang va dam olishni rejalashtiring.`,
+ `Pickupda nima qilishi kerakligini 4 ta ko'rsatma bilan tushuntiring.`,
+ `Haydovchi bu yukni yoqtirmadi (juda uzoq). Uni ishontiring yoki boshqa variant taklif qiling.`,
+ `Haydovchiga manzil, load raqami va bog'lanish raqamini aniq ayting.`]},
+
+{t:"Shipperga kelish",
+ p:`I'm here to pick up load 77490.|77490-yukni olish uchun keldim.
+Which door should I back into?|Qaysi eshikka orqa bilan kiray?
+How long will loading take?|Ortish qancha vaqt oladi?
+Please call me when the paperwork is ready.|Hujjatlar tayyor bo'lsa qo'ng'iroq qiling.
+The driver has checked in.|Haydovchi ro'yxatdan o'tdi.
+They put him in door 12.|Uni 12-eshikka qo'yishdi.
+What time did you check in?|Soat nechada ro'yxatdan o'tding?
+Check the pallet count before you sign.|Imzolashdan oldin paletlarni sana.
+We're loaded and rolling.|Yuk ortildi, yo'ldamiz.
+The seal number is 3381920.|Plomba raqami 3381920.`,
+ g:[["Haydovchi va ombor xodimi","Haydovchi shipper ofisiga kirdi.",
+`D|Good morning. I'm here to pick up load 77490.
+S|Name of carrier?
+D|Star Trucking.
+S|Okay. Back into door 12, please.
+D|How long will loading take?
+S|About an hour and a half.
+D|Thanks. Please call me when the paperwork is ready.
+S|Will do. Wait in your truck.`],
+ ["Haydovchidan xabar","Haydovchi sizga qo'ng'iroq qildi.",
+`D|Hey, I'm at the shipper. They put me in door 12.
+Y|Great. What time did you check in?
+D|6:15.
+Y|Okay, I'll let the broker know. Call me when you're loaded.
+D|Will do.
+Y|Also, check the pallet count before you sign the BOL.
+D|Got it.`],
+ ["Brokerga update","Siz brokerga pickup holatini xabar qilasiz.",
+`Y|Hi Sarah, just an update on load 77490. The driver checked in at 6:15, door 12.
+B|Thanks. How long do they think loading will take?
+Y|About an hour and a half.
+B|Great. Please send the BOL when he's loaded.
+Y|Will do.
+Y|(later) Hi Sarah, the driver is loaded and rolling. The seal number is 3381920. ETA is Friday at 8 AM.
+B|Perfect, thanks.`]],
+ s:[`Siz haydovchisiz: ombor ofisiga kirib, yukni olish uchun kelganingizni ayting va savollar bering.`,
+ `Brokerga qo'ng'iroq qilib, haydovchi qachon kelgani va qaysi eshikda ekanini xabar qiling.`,
+ `Haydovchi yuk ortildi dedi. Brokerga plomba raqami va ETA bilan update bering.`,
+ `Haydovchiga BOL'ni imzolashdan oldin nimalarni tekshirishni tushuntiring.`,
+ `Ombor xodimi "paperwork is not ready" dedi. Haydovchi sifatida qancha kutishni so'rang.`]},
+
+{t:"Shipperda kechikish va detention",
+ p:`The driver has been waiting for three hours.|Haydovchi uch soatdan beri kutyapti.
+They haven't started loading yet.|Hali ortishni boshlashmadi.
+The product isn't ready.|Mahsulot tayyor emas.
+Can you call the shipper and check?|Shipperga qo'ng'iroq qilib bilib bera olasizmi?
+Detention starts after two hours.|Detention ikki soatdan keyin boshlanadi.
+Please make sure the times are on the BOL.|Vaqtlar BOL'da yozilishi kerak.
+We need to be paid for detention.|Detention uchun to'lov kerak.
+The driver is going to run out of hours.|Haydovchining soatlari tugaydi.
+He arrived at 6 and left at 11.|U 6 da kelib, 11 da ketdi.
+That's three hours of detention.|Bu uch soatlik detention.`,
+ g:[["Uzoq kutish","Haydovchi 3 soatdan beri kutyapti.",
+`Y|Hi, this is Alex with Star Trucking, load 77490. The driver has been waiting for three hours.
+B|They haven't loaded him yet?
+Y|No, they said the product isn't ready.
+B|Let me call the shipper and find out.
+Y|Thank you. Detention starts after two hours, right?
+B|Yes, fifty an hour.
+Y|Okay, I'll make sure the in and out times are on the BOL.`],
+ ["Broker javobi","Broker shipper bilan gaplashib, qayta qo'ng'iroq qildi.",
+`B|I talked to the shipper. They'll load him in about an hour.
+Y|That will be four hours total. He has an appointment tomorrow morning.
+B|Will he make it?
+Y|Yes, if they load him in an hour. If not, we need to move the appointment.
+B|Okay, keep me updated.
+Y|Will do.`],
+ ["Detention hisobi","Siz detention uchun invoice yuboryapsiz.",
+`Y|Hi, I'm sending the invoice for load 77490 with detention.
+B|How much detention?
+Y|The driver arrived at 6:00 and left at 11:00. That's five hours, so three hours of detention.
+B|At fifty an hour, that's one fifty.
+Y|Correct. The times are on the signed BOL.
+B|Great, send it over.`]],
+ s:[`Haydovchi 4 soatdan beri kutyapti. Brokerga qo'ng'iroq qilib, vaziyatni tushuntiring.`,
+ `Brokerdan detention qachon boshlanishi va soatiga qancha ekanini so'rang.`,
+ `Haydovchi 7:00 da kelib, 13:00 da ketdi. Detention hisobini ovoz chiqarib tushuntiring.`,
+ `Kutish sabab ertangi delivery'ga ulgurmaslik xavfi bor. Brokerga oldindan ayting.`,
+ `Haydovchiga kelish va ketish vaqtlarini BOL'ga yozdirishni tushuntiring.`]},
+
+{t:"Check call va ETA",
+ p:`Where are you right now?|Hozir qayerdasan?
+What's your ETA?|Qachon yetib borasan?
+The driver is about 100 miles out.|Haydovchi taxminan 100 mil uzoqda.
+He's on schedule.|Jadval bo'yicha ketyapti.
+He'll arrive around 3 PM.|Taxminan 15:00 da yetadi.
+He stopped for fuel.|Yoqilg'i quyish uchun to'xtadi.
+He's taking his 30-minute break.|30 daqiqalik tanaffus qilyapti.
+I'll send you an update every four hours.|Har to'rt soatda xabar berib turaman.
+Can you share the tracking link?|Kuzatuv havolasini yubora olasizmi?
+The tracking is working now.|Kuzatuv endi ishlayapti.`,
+ g:[["Haydovchidan joylashuv","Siz haydovchidan qayerdaligini so'raysiz.",
+`Y|Hey Mike, where are you right now?
+D|Just passed Little Rock.
+Y|How's traffic?
+D|It's clear.
+Y|What's your ETA to Memphis?
+D|About two hours.
+Y|Great, thanks. Drive safe.`],
+ ["Broker update so'radi","Broker load holatini so'rayapti.",
+`B|Hi Alex, can I get an update on load 77490?
+Y|Sure. The driver is about 120 miles out, near Birmingham.
+B|Is he on schedule?
+Y|Yes. He'll arrive around 2 PM, an hour before the appointment.
+B|Perfect. Can you share the tracking link?
+Y|I'll send it to your email now.`],
+ ["Kuzatuv ishlamayapti","Brokerning kuzatuv dasturida haydovchi ko'rinmayapti.",
+`B|Your driver isn't showing on our tracking app.
+Y|Let me check. He might have closed the app.
+B|We need tracking for this customer.
+Y|I understand. I'll call him and ask him to turn it back on.
+Y|(later) Hi, the tracking is working now.
+B|Thanks, I can see him.`]],
+ s:[`Haydovchidan joylashuvi, tirbandlik va ETA'ni so'rang.`,
+ `Brokerga update bering: haydovchi qayerda, qancha qoldi, vaqtida yetadimi.`,
+ `Haydovchi yoqilg'i quyish uchun to'xtagan. Brokerga buni xotirjam tushuntiring.`,
+ `Broker kuzatuv ishlamayotganidan norozi. Kechirim so'rab, hal qilishni va'da bering.`,
+ `Ertalabdan kechgacha 3 ta check call qiling: ertalab, tushda, kechqurun.`]},
+
+{t:"Tirbandlik va ob-havo",
+ p:`There's heavy traffic on I-95.|I-95 da tirbandlik kuchli.
+There's an accident ahead.|Oldinda avariya bor.
+The road is closed.|Yo'l yopiq.
+He's taking a detour.|U aylanib o'tyapti.
+There's a snowstorm in the area.|Hududda qor bo'roni.
+The roads are icy.|Yo'llar muzlagan.
+It's not safe to drive right now.|Hozir haydash xavfli.
+He'll be about two hours late.|Taxminan ikki soat kechikadi.
+Can we push the appointment?|Vaqtni surish mumkinmi?
+Safety comes first.|Xavfsizlik birinchi o'rinda.`,
+ g:[["Avariya sabab tirbandlik","Haydovchi oldinda avariya borligini aytdi.",
+`D|Hey, there's an accident on I-95. Traffic isn't moving.
+Y|How far is it?
+D|About three miles ahead.
+Y|Is there a detour?
+D|The GPS says I can take Route 1.
+Y|Okay, take the detour. How late will you be?
+D|Maybe one hour.
+Y|Got it. I'll let the broker know.`],
+ ["Brokerga kechikish xabari","Siz brokerga kechikishni oldindan aytasiz.",
+`Y|Hi Sarah, quick update on load 77490. There's an accident on I-95 and the driver is taking a detour.
+B|Will he be late?
+Y|About an hour. New ETA is 4 PM.
+B|The appointment is at 3. I'll call the receiver.
+Y|Thank you. I'll keep you updated.`],
+ ["Qor bo'roni","Haydovchi yo'lni ko'ra olmayapti.",
+`D|It's snowing really hard. I can't see the road.
+Y|Stop at the next safe place. Safety comes first.
+D|There's a truck stop five miles ahead.
+Y|Okay, park there and let me know.
+Y|(to broker) Hi, there's a snowstorm in Wyoming and the roads are closed. The driver is parked at a truck stop.
+B|How long will he be stuck?
+Y|The roads should open tomorrow morning. We'll need to move the delivery to Thursday.
+B|Okay, I'll ask the receiver.`]],
+ s:[`Haydovchi tirbandlikda qoldi. Unga aylanma yo'l haqida ko'rsatma bering.`,
+ `Brokerga 2 soatlik kechikishni xabar qiling va vaqtni surishni so'rang.`,
+ `Qor bo'roni. Haydovchini to'xtashga ishontiring, u esa davom etmoqchi.`,
+ `Yo'l yopilgan. Brokerga yangi delivery sanasini taklif qiling.`,
+ `Qabul qiluvchiga o'zingiz qo'ng'iroq qilib, kechikish uchun uzr so'rang.`]}
+]},
+{t:"Yo'ldagi muammolar", d:[
+{t:"Mashina buzilishi",
+ p:`The truck broke down.|Mashina buzildi.
+He has a flat tire.|Shinasi teshildi.
+The check engine light is on.|Dvigatel chirog'i yondi.
+Are you safe?|Xavfsiz joydamisan?
+Where exactly are you?|Aniq qayerdasan?
+What's the mile marker?|Mil belgisi nechchi?
+Road service is on the way.|Yo'l xizmati yo'lda.
+How long will the repair take?|Ta'mir qancha vaqt oladi?
+We may need to transfer the load.|Yukni boshqa mashinaga o'tkazishimiz kerak bo'lishi mumkin.
+Thanks for letting me know early.|Oldindan aytganingiz uchun rahmat.`,
+ g:[["Teshilgan shina","Haydovchi yo'l chetida turibdi.",
+`D|I've got a flat tire on the trailer.
+Y|Are you safe? Where exactly are you?
+D|I'm on the shoulder, I-40 eastbound, mile marker 152.
+Y|Okay, turn on your hazards. I'll call road service.
+D|Thanks.
+Y|Road service is on the way. Their ETA is about an hour.`],
+ ["Brokerga xabar","Siz brokerga buzilish haqida aytasiz.",
+`Y|Hi Mike, the driver on load 55120 has a flat tire.
+B|Oh no. How long will it take?
+Y|Road service will be there in an hour. The repair takes about thirty minutes.
+B|So he'll be late?
+Y|About two hours. New ETA is 6 PM.
+B|Okay, thanks for letting me know early.`],
+ ["Jiddiy nosozlik","Dvigatelda muammo, mashina quvvat yo'qotmoqda.",
+`D|The check engine light is on and the truck is losing power.
+Y|Pull over safely. Don't drive it.
+D|I'm at a gas station now.
+Y|Okay. I found a repair shop ten miles away. They'll tow you there.
+D|What about the load?
+Y|If the repair takes more than a day, we'll transfer the load to another truck.
+D|Got it.`]],
+ s:[`Haydovchi buzilish haqida qo'ng'iroq qildi. Xavfsizligini, aniq joyini va mil belgisini so'rang.`,
+ `Brokerga buzilish, ta'mir vaqti va yangi ETA'ni ayting.`,
+ `Ta'mir 2 kun davom etadi. Brokerga yukni boshqa mashinaga o'tkazishni taklif qiling.`,
+ `Yo'l xizmatiga (road service) qo'ng'iroq qilib, joy va muammoni tushuntiring.`,
+ `Haydovchini tinchlantiring va keyingi qadamlarni tushuntiring.`]},
+
+{t:"Avariya va favqulodda holat",
+ p:`Is anyone hurt?|Kimdir jarohat oldimi?
+Call 911 first.|Avval 911 ga qo'ng'iroq qil.
+Stay calm.|Xotirjam bo'l.
+Take pictures of everything.|Hammasini rasmga ol.
+Don't admit fault.|Aybni bo'yningga olma.
+Did the police come?|Politsiya keldimi?
+Get the police report number.|Politsiya hisoboti raqamini ol.
+I've informed our insurance company.|Sug'urta kompaniyamizga xabar berdim.
+Is the cargo damaged?|Yuk shikastlandimi?
+I'll keep you updated.|Xabar berib turaman.`,
+ g:[["Haydovchi avariyaga uchradi","Mashina trailerga urildi.",
+`D|I just had an accident. A car hit my trailer.
+Y|Are you okay? Is anyone hurt?
+D|I'm fine. The other driver looks okay too.
+Y|Good. Call 911 and stay calm.
+D|The police are already here.
+Y|Take pictures of everything and get the police report number. Don't admit fault.
+D|Okay.`],
+ ["Brokerga yomon xabar","Siz brokerga avariya haqida aytasiz.",
+`Y|Hi Sarah, I have bad news. Our driver on load 77490 was in an accident.
+B|Is he okay?
+Y|Yes, no one is hurt. A car hit the trailer.
+B|What about the cargo?
+Y|The driver is checking now. The trailer has damage on the side.
+B|Please send pictures as soon as you can.
+Y|Will do. I've already informed our insurance company.`],
+ ["Keyingi qadamlar","Broker tafsilotlarni so'rayapti.",
+`B|Do you have the police report number?
+Y|Yes, it's 2026-55871.
+B|Is the cargo damaged?
+Y|Two pallets are damaged. The rest is fine.
+B|Can the truck continue?
+Y|Yes, the police cleared it. The driver will continue after his inspection.
+B|Okay, the receiver will check the damaged pallets.`]],
+ s:[`Haydovchi avariya haqida qo'ng'iroq qildi. Unga tinch ovozda 5 ta ko'rsatma bering.`,
+ `Brokerga yomon xabarni xotirjam va aniq yetkazing.`,
+ `Broker politsiya hisoboti va yuk holatini so'rayapti. Javob bering.`,
+ `Sug'urta kompaniyasiga qo'ng'iroq qilib, nima bo'lganini tushuntiring.`,
+ `Avariyadan keyin yangi ETA berib, qabul qiluvchini ogohlantiring.`]},
+
+{t:"HOS muammolari",
+ p:`The driver is out of hours.|Haydovchining soatlari tugadi.
+He needs to take a 10-hour break.|U 10 soat dam olishi kerak.
+He has three hours left on his clock.|Unda 3 soat qolgan.
+His 14-hour window ends at 8 PM.|14 soatlik oynasi 20:00 da tugaydi.
+He'll be back on the road at 6 AM.|Ertalab 6:00 da yo'lga qaytadi.
+We can't break the HOS rules.|HOS qoidalarini buza olmaymiz.
+He's on a 34-hour reset.|U 34 soatlik dam olishda.
+The waiting time used up his hours.|Kutish uning soatlarini yeb qo'ydi.
+Find a safe place to park.|Xavfsiz to'xtash joyi top.
+We'll deliver first thing in the morning.|Ertalab birinchi bo'lib yetkazamiz.`,
+ g:[["Soat tugayapti","Haydovchida 1 soat qoldi, manzilgacha 90 mil.",
+`D|I have only one hour left, and I'm 90 miles from the receiver.
+Y|Okay, find a safe place to park and start your 10-hour break.
+D|There's a truck stop in 20 miles.
+Y|Go there. You'll start again at 5 AM.
+D|Sounds good.`],
+ ["Broker bosim qilyapti","Broker 'shunchaki haydab borsin' deyapti.",
+`B|Can't he just drive the last 90 miles tonight?
+Y|No, he's out of hours. We can't break the HOS rules.
+B|The receiver is waiting.
+Y|I understand. He'll be back on the road at 5 AM and deliver first thing in the morning.
+B|Okay, I'll let them know.`],
+ ["Kutish soatlarni yedi","Shipperdagi uzoq kutish rejani buzdi.",
+`Y|The driver waited six hours at the shipper, and it used up his hours.
+B|So he can't make the delivery tomorrow morning?
+Y|He can deliver tomorrow afternoon instead.
+B|Let me check if the receiver has a later appointment.
+Y|Thank you. Also, we'll be billing detention for the six hours.
+B|Understood.`]],
+ s:[`Haydovchida 2 soat qoldi. Unga to'xtash va dam olishni rejalashtirib bering.`,
+ `Broker HOS'ni buzishni so'rayapti. Qat'iy, lekin xushmuomala rad eting.`,
+ `Brokerga HOS sabab yangi ETA'ni tushuntiring: qachon dam oladi, qachon yetadi.`,
+ `Haydovchi 34 soatlik dam olishda. Brokerga u qachon ishga qaytishini ayting.`,
+ `HOS qoidalarini (11, 14, 10, 30 daq) ingliz tilida o'zingizga tushuntirib bering.`]},
+
+{t:"Delivery vaqtini o'zgartirish",
+ p:`Can we reschedule the appointment?|Vaqtni o'zgartira olamizmi?
+Do they have anything earlier?|Ertaroq vaqt bormi?
+Can the driver deliver early?|Haydovchi ertaroq yetkaza oladimi?
+We're running ahead of schedule.|Jadvaldan oldinda ketyapmiz.
+Do they accept work-ins?|Navbatsiz qabul qilishadimi?
+What are their receiving hours?|Qabul qilish soatlari qanday?
+The next opening is at 2 PM.|Keyingi bo'sh vaqt 14:00 da.
+Please confirm the new time by email.|Yangi vaqtni emailda tasdiqlang.
+That works for us.|Bu bizga to'g'ri keladi.
+Thank you for working with us.|Biz bilan hamkorlik uchun rahmat.`,
+ g:[["Ertaroq yetkazish","Haydovchi jadvaldan oldinda.",
+`Y|Hi, our driver is running ahead of schedule. Can he deliver early?
+B|The appointment is at 3 PM. What time can he be there?
+Y|Around 10 AM.
+B|Let me call the receiver.
+B|(later) They can take him at 11.
+Y|Perfect. Please confirm the new time by email.`],
+ ["Kechikish, yangi vaqt","Haydovchi 8:00 dagi vaqtga ulgurmaydi.",
+`Y|The driver will miss the 8 AM appointment because of traffic. Can we reschedule?
+B|What's his new ETA?
+Y|11 AM.
+B|The receiver says the next opening is at 2 PM.
+Y|That works. Thank you for working with us.`],
+ ["Work-in","Belgilangan vaqtsiz, navbat bilan kirish.",
+`Y|Does the receiver accept work-ins?
+B|Yes, but he might wait a few hours.
+Y|Is there detention for work-ins?
+B|No, detention only applies to appointments.
+Y|Understood. We'll try the work-in.`]],
+ s:[`Haydovchi 5 soat ertaroq yetadi. Brokerdan ertaroq yetkazishni so'rang.`,
+ `Haydovchi kechikadi. Yangi vaqtni so'rang va tasdiqlashni emailda talab qiling.`,
+ `Qabul qiluvchiga o'zingiz qo'ng'iroq qilib, ish soatlari va work-in qabul qilishini so'rang.`,
+ `Work-in uchun detention to'lanadimi, aniqlang.`,
+ `Delivery juma kuni edi, dushanbaga ko'chirish kerak. Brokerga taklif qiling.`]},
+
+{t:"Qabul qiluvchida: tushirish va lumper",
+ p:`I'm here to deliver load 77490.|77490-yukni yetkazish uchun keldim.
+Do I need a lumper?|Lumper kerakmi?
+How much is the lumper fee?|Lumper qancha turadi?
+Who pays for the lumper?|Lumper'ga kim to'laydi?
+Please send me the lumper receipt.|Lumper kvitansiyasini yuboring.
+They're unloading now.|Hozir tushirishyapti.
+The receiver signed the POD.|Qabul qiluvchi POD'ni imzoladi.
+No shortages, no damages.|Kamomad ham, shikast ham yo'q.
+The driver is empty.|Haydovchi bo'shadi.
+I'm looking for your next load.|Keyingi yukingni qidiryapman.`,
+ g:[["Haydovchi va qabul qiluvchi","Haydovchi omborga yetib keldi.",
+`D|Hi, I'm here to deliver load 77490.
+R|Do you have an appointment?
+D|Yes, at 9 AM.
+R|Okay. Door 4. You'll need a lumper to unload.
+D|How much is it?
+R|Two hundred dollars.
+D|Okay, let me call my dispatcher.`],
+ ["Lumper to'lovi","Siz brokerdan lumper to'lovini so'raysiz.",
+`Y|Hi, the receiver needs a lumper for load 77490. It's two hundred dollars.
+B|We'll pay it. I'll send you a payment code.
+Y|Thank you. Should the driver get a receipt?
+B|Yes, please send me the lumper receipt with the POD.
+Y|Will do.`],
+ ["Bo'shadi","Haydovchi yukni topshirdi.",
+`D|They're done. I'm empty.
+Y|Great job. Did they sign the POD?
+D|Yes, no shortages.
+Y|Please send me a clear picture of the POD and the lumper receipt.
+D|Sending now.
+Y|Got it, thanks. Take a break, I'm looking for your next load.`]],
+ s:[`Siz haydovchisiz: qabul qiluvchiga kelganingizni ayting va qaysi eshikka borishni so'rang.`,
+ `Brokerdan lumper uchun kim va qanday to'lashini so'rang.`,
+ `Haydovchidan POD, kvitansiya va kamomad bor-yo'qligini so'rang.`,
+ `Brokerga yetkazilganini, POD va kvitansiya yuborilganini xabar qiling.`,
+ `Haydovchini maqtab, keyingi yuk bo'yicha rejani ayting.`]},
+
+{t:"Shikast, kamomad, rad etilgan yuk",
+ p:`The receiver rejected the load.|Qabul qiluvchi yukni rad etdi.
+Two pallets are damaged.|Ikki palet shikastlangan.
+There's a shortage of five cases.|Besh quti kam.
+There's an overage.|Ortiqcha yuk bor.
+They wrote it on the POD.|Buni POD'ga yozishdi.
+Please send pictures of the damage.|Shikast rasmlarini yuboring.
+The seal was intact.|Plomba butun edi.
+It was shipper load and count.|Yukni shipper o'zi ortgan va sanagan.
+What should the driver do with the rejected product?|Rad etilgan yuk bilan haydovchi nima qilsin?
+We need instructions from the shipper.|Shipperdan ko'rsatma kerak.`,
+ g:[["Ikki palet rad etildi","Haydovchi shikast haqida aytdi.",
+`D|The receiver rejected two pallets. They say they're damaged.
+Y|Did you take pictures?
+D|Yes.
+Y|Was the seal intact when you arrived?
+D|Yes, they cut it themselves.
+Y|Good. Make sure they write it on the POD and send me everything.`],
+ ["Brokerdan ko'rsatma","Rad etilgan yuk bilan nima qilishni so'raysiz.",
+`Y|Hi Sarah, the receiver rejected two pallets on load 77490 for damage.
+B|Did they sign the POD?
+Y|Yes, with a note: two pallets refused. The rest was delivered.
+B|What should the driver do with the two pallets?
+Y|That's what I'm asking. We need instructions.
+B|Let me talk to the shipper. They may want them returned.
+Y|Okay. Please let me know soon, the driver is waiting.`],
+ ["Kamomad","Qabul qiluvchi 5 quti kam deyapti.",
+`B|The receiver says there's a shortage of five cases.
+Y|The trailer was sealed at pickup, and the seal was intact at delivery.
+B|Was it shipper load and count?
+Y|Yes, it says SLC on the BOL. The driver couldn't count the cases.
+B|Okay, then it's between the shipper and the receiver.
+Y|Thank you.`]],
+ s:[`Haydovchiga shikast bo'lganda nima qilish kerakligini 4 qadamda tushuntiring.`,
+ `Brokerga rad etilgan paletlar haqida aytib, ko'rsatma so'rang.`,
+ `Kamomad uchun javobgar emasligingizni plomba va SLC orqali tushuntiring.`,
+ `Rad etilgan yukni qaytarib olib borish uchun qo'shimcha to'lov so'rang.`,
+ `Haydovchidan shikast rasmlarini va POD'dagi yozuvni so'rang.`]}
+]},
+{t:"To'lovlar va maxsus yuklar", d:[
+{t:"TONU va bekor qilish",
+ p:`The load was cancelled.|Yuk bekor qilindi.
+The driver is already at the shipper.|Haydovchi allaqachon shipperda.
+We need a TONU.|Bizga TONU kerak.
+How much is the TONU?|TONU qancha?
+We drove 80 miles for this load.|Bu yuk uchun 80 mil yurdik.
+Please send a TONU confirmation.|TONU tasdig'ini yuboring.
+Do you have another load for us?|Bizga boshqa yuk bormi?
+Please let us know earlier next time.|Keyingi safar oldinroq ayting.
+We can't make the pickup.|Pickupga ulgura olmaymiz.
+Thanks for the heads up.|Oldindan aytganingiz uchun rahmat.`,
+ g:[["Yuk bekor qilindi","Haydovchi shipperga yetganda yuk bekor bo'ldi.",
+`B|Hi Alex, I'm sorry, but the load from Memphis was cancelled.
+Y|The driver is already at the shipper.
+B|I just found out.
+Y|We need a TONU. He drove 80 miles for this load.
+B|I can offer one fifty.
+Y|Can you do two hundred? He lost half a day.
+B|Okay, two hundred. I'll send a TONU confirmation.`],
+ ["O'rniga yuk","Bekor qilingan yuk o'rniga boshqasini so'raysiz.",
+`Y|Do you have another load nearby to replace it?
+B|I have one from Memphis to Nashville tomorrow.
+Y|What's the rate?
+B|Seven hundred.
+Y|If we take it, will you still pay the TONU?
+B|Yes, they're separate.
+Y|Okay, send me both confirmations.`],
+ ["Siz bekor qilyapsiz","Mashinangiz buzildi, pickupga bora olmaysiz.",
+`Y|Hi Mike, I'm calling about load 55120. Our truck broke down and we can't make the pickup.
+B|That's a problem. The pickup is in two hours.
+Y|I'm very sorry. I'm telling you as early as possible so you can find another truck.
+B|Thanks for the heads up.
+Y|Again, I'm sorry. We'd like to work with you again.`]],
+ s:[`Yuk bekor qilindi, haydovchi 100 mil yurgan. TONU so'rang va narxini kelishing.`,
+ `Bekor qilingan yuk o'rniga yaqin atrofdan yangi yuk so'rang.`,
+ `Siz yukni bekor qilishingizga to'g'ri keldi. Brokerdan uzr so'rang va munosabatni saqlang.`,
+ `Broker TONU to'lamoqchi emas. Dalil bilan talab qiling.`,
+ `Brokerdan keyingi safar oldinroq xabar berishni xushmuomalalik bilan so'rang.`]},
+
+{t:"Layover",
+ p:`The receiver can't take the load today.|Qabul qiluvchi bugun yukni ololmaydi.
+The driver will have to wait until tomorrow.|Haydovchi ertagacha kutishi kerak.
+We need a layover payment.|Layover to'lovi kerak.
+Our layover rate is 250 dollars per day.|Bizning layover narxi kuniga 250 dollar.
+The driver is losing a day of work.|Haydovchi bir ish kunini yo'qotyapti.
+Please put it in writing.|Buni yozma tasdiqlang.
+Can he drop the trailer?|Trailerni qoldirib ketsa bo'ladimi?
+Is there safe parking nearby?|Yaqin atrofda xavfsiz to'xtash joyi bormi?
+Can we deliver on Monday instead?|Buning o'rniga dushanba yetkazsak bo'ladimi?
+The receiver is closed on the weekend.|Qabul qiluvchi dam olish kunlari yopiq.`,
+ g:[["Bugun qabul qilmaydi","Haydovchi vaqtida keldi, lekin ombor band.",
+`Y|Hi, the receiver says they can't take the load until tomorrow.
+B|Yeah, they're overbooked today.
+Y|The driver had an appointment and arrived on time. We need a layover.
+B|How much do you charge?
+Y|Two fifty per day.
+B|I can do two hundred.
+Y|Okay, two hundred. Please put it in writing.`],
+ ["Trailerni qoldirish","Trailerni qoldirish mumkinmi, aniqlaysiz.",
+`Y|Can the driver drop the trailer at the receiver instead?
+B|Do you have another trailer?
+Y|No, so if he drops it, he can't work anyway.
+B|Then we'll go with the layover.
+Y|Okay. Is there safe parking near the receiver?
+B|There's a truck stop two miles away.`],
+ ["Dam olish kunlari","Ombor shanba-yakshanba yopiq.",
+`B|The receiver is closed on the weekend. Can you deliver on Monday?
+Y|That means the driver waits two days.
+B|I know. I can pay a layover for Saturday and Sunday.
+Y|How much per day?
+B|Two hundred.
+Y|We'd prefer two fifty per day, since it's the weekend.
+B|Let's do two twenty-five.
+Y|Deal.`]],
+ s:[`Qabul qiluvchi yukni ertaga oladi. Brokerdan layover to'lovini so'rang.`,
+ `Layover narxini kelishing: siz $300, broker $150 dedi.`,
+ `Haydovchiga ertagacha kutishini va qayerda to'xtashini tushuntiring.`,
+ `Dam olish kunlari uchun 2 kunlik layover so'rang.`,
+ `Layover kelishuvini yozma tasdiqlashni talab qiling.`]},
+
+{t:"Reefer va harorat",
+ p:`What temperature should it be set at?|Qaysi haroratga qo'yish kerak?
+Is it continuous or cycle?|Doimiy rejimmi yoki tsiklli?
+Is it fresh or frozen?|Yangi mahsulotmi yoki muzlatilgan?
+Please pre-cool the trailer.|Trailerni oldindan sovuting.
+The reefer is running at 34 degrees.|Reefer 34 darajada ishlayapti.
+Send me a picture of the reefer display.|Reefer ekranining rasmini yubor.
+The temperature is going up.|Harorat ko'tarilyapti.
+Fill the reefer tank right now.|Reefer bakini hoziroq to'ldir.
+The receiver may want a temperature download.|Qabul qiluvchi harorat yozuvini so'rashi mumkin.
+It's coming back down.|Pasaymoqda.`,
+ g:[["Harorat sozlamalari","Siz brokerdan reefer talablarini so'raysiz.",
+`Y|What temperature does the load need?
+B|34 degrees, continuous.
+Y|Is it fresh or frozen?
+B|Fresh produce, strawberries.
+Y|Do we need to pre-cool the trailer?
+B|Yes, pre-cool to 34 before loading.
+Y|Got it.`],
+ ["Haydovchiga ko'rsatma","Haydovchiga reefer sozlamalarini aytasiz.",
+`Y|Mike, set the reefer at 34 degrees, continuous, and pre-cool before you go in.
+D|Okay. Should I send a picture?
+Y|Yes, send me a picture of the reefer display when you're loaded.
+D|Will do.`],
+ ["Harorat ko'tarildi","Reefer xato ko'rsatyapti.",
+`D|The reefer temperature is going up. It shows 42.
+Y|Pull over at the next exit and check the unit.
+D|It says error. Maybe low fuel.
+Y|Fill the reefer tank right now. I'll tell the broker.
+Y|(to broker) Hi, the reefer temperature went up to 42 because of low fuel. The driver is fueling now.
+B|How long was it high?
+Y|About 30 minutes. It's coming back down.
+B|The receiver may want a temperature download.
+Y|No problem, we can send it.`]],
+ s:[`Brokerdan reefer yukning harorati, rejimi va oldindan sovutish kerakligini so'rang.`,
+ `Haydovchiga reefer sozlamalarini va rasm yuborishni tushuntiring.`,
+ `Harorat 45°F ga ko'tarildi. Haydovchiga tez ko'rsatma bering.`,
+ `Brokerga harorat muammosini halol va aniq tushuntiring.`,
+ `Muzlatilgan go'sht uchun haroratni so'rang (odatda 0°F yoki pastroq).`]},
+
+{t:"Flatbed: brezent va mahkamlash",
+ p:`Does it need tarps?|Brezent kerakmi?
+What size tarps?|Qanday o'lchamdagi brezent?
+How many chains or straps?|Nechta zanjir yoki kamar?
+Is there tarp pay?|Brezent uchun qo'shimcha to'lov bormi?
+What are the dimensions?|O'lchamlari qanday?
+Is it over-dimensional?|Gabaritdan oshganmi?
+Does it need permits?|Ruxsatnoma kerakmi?
+Is there a forklift at delivery?|Delivery'da yuk ko'targich bormi?
+Who unloads the load?|Yukni kim tushiradi?
+The load is secured.|Yuk mahkamlangan.`,
+ g:[["Po'lat o'ramlari","Flatbed yuk tafsilotlarini aniqlaysiz.",
+`Y|What's the commodity?
+B|Steel coils.
+Y|What's the weight?
+B|Forty-five thousand.
+Y|Does it need tarps?
+B|Yes, six-foot tarps.
+Y|Is there tarp pay?
+B|Seventy-five dollars.
+Y|Okay. And how many chains?
+B|The shipper will tell the driver, usually at least eight.`],
+ ["Katta o'lchamli yuk","Yuk eni standartdan katta.",
+`Y|What are the dimensions of the load?
+B|Forty feet long, nine feet wide, ten feet tall.
+Y|Nine feet wide is over-dimensional. Does it need permits?
+B|Yes, the shipper wants the carrier to get permits.
+Y|We'll need to add the permit cost to the rate.
+B|How much more?
+Y|About three hundred, depending on the states.`],
+ ["Tushirish","Yuk qurilish maydoniga boradi.",
+`Y|Is there a forklift at delivery?
+B|It's a construction site. They have a crane.
+Y|Who unloads?
+B|The receiver will unload. The driver just removes the straps.
+Y|Okay. What are the receiving hours?
+B|7 to 3.`]],
+ s:[`Flatbed yuk uchun brezent, zanjir va qo'shimcha to'lovni so'rang.`,
+ `Yuk o'lchamlarini so'rang va gabaritdan oshsa, ruxsatnoma narxini qo'shishni taklif qiling.`,
+ `Delivery joyida tushirish uskunasi bor-yo'qligini aniqlang.`,
+ `Haydovchiga yukni yaxshi mahkamlash va rasm yuborishni tushuntiring.`,
+ `Broker brezent uchun pul bermayapti. Narxni kelishing.`]},
+
+{t:"Hujjat muammolari",
+ p:`The POD picture is blurry.|POD rasmi xira.
+Please take it again.|Qaytadan rasmga ol.
+Use a scanning app.|Skaner dasturidan foydalan.
+Make sure all four corners are in the picture.|To'rtala burchak rasmda bo'lsin.
+The driver lost the BOL.|Haydovchi BOL'ni yo'qotdi.
+Can you get a copy from the shipper?|Shipperdan nusxa olib bera olasizmi?
+The POD is missing a signature.|POD'da imzo yo'q.
+We can't invoice without the POD.|POD'siz invoice qila olmaymiz.
+The BOL has the wrong weight.|BOL'da og'irlik noto'g'ri.
+All documents are attached.|Barcha hujjatlar ilova qilingan.`,
+ g:[["Xira rasm","Haydovchi yuborgan POD o'qilmaydi.",
+`Y|Mike, the POD picture is blurry. I can't read it.
+D|Sorry, I'll take it again.
+Y|Please use a scanning app and make sure all four corners are in the picture.
+D|Okay. Sending now.
+Y|Perfect, this one is clear.`],
+ ["Yo'qolgan BOL","Haydovchi BOL'ni yo'qotdi.",
+`D|I think I lost the BOL.
+Y|Did you take a picture of it at pickup?
+D|No, I forgot.
+Y|Okay, I'll ask the broker to get a copy from the shipper. Next time, always take a picture right away.
+D|I will.
+Y|(to broker) Hi, the driver lost the BOL on load 55120. Can you get a copy from the shipper?
+B|Sure, I'll ask them.`],
+ ["Imzo yo'q","Broker POD'da imzo yo'qligini aytdi.",
+`B|The POD you sent is missing the receiver's signature.
+Y|Let me check. You're right.
+B|We can't pay without it.
+Y|I'll call the receiver and ask them to email a signed copy.
+B|Thank you.`]],
+ s:[`Haydovchiga sifatli hujjat rasmi qanday olinishini tushuntiring.`,
+ `BOL yo'qoldi. Brokerdan shipperdan nusxa olishni so'rang.`,
+ `Qabul qiluvchiga qo'ng'iroq qilib, imzolangan POD nusxasini so'rang.`,
+ `BOL'dagi og'irlik rate con'dagidan farq qiladi. Brokerga tushuntiring.`,
+ `Brokerga barcha hujjatlar emailga yuborilganini va nimalar ilova qilinganini ayting.`]},
+
+{t:"To'lov va invoice",
+ p:`I'm calling about payment for load 77490.|77490-yuk to'lovi bo'yicha qo'ng'iroq qilyapman.
+When will the invoice be paid?|Invoice qachon to'lanadi?
+What are your payment terms?|To'lov shartlaringiz qanday?
+Do you offer quick pay?|Tez to'lov bormi?
+What's the quick pay fee?|Tez to'lov foizi qancha?
+The invoice is 15 days past due.|Invoice 15 kunga kechikdi.
+We sent the invoice on March 3.|Invoice'ni 3-martda yuborganmiz.
+Can you send me a remittance?|To'lov tasdig'ini yubora olasizmi?
+Who should I talk to in accounting?|Buxgalteriyada kim bilan gaplashay?
+We haven't received the payment yet.|To'lovni hali olmadik.`,
+ g:[["To'lov muddati","Siz to'lov qachon bo'lishini so'raysiz.",
+`Y|Hi, I'm calling about payment for load 77490. We sent the invoice on March 3.
+B|Let me check. It's scheduled for payment on April 2.
+Y|What are your payment terms?
+B|Thirty days.
+Y|Do you offer quick pay?
+B|Yes, two days with a three percent fee.
+Y|Okay, we'll stay with thirty days. Thank you.`],
+ ["Kechikkan to'lov","Invoice muddati o'tib ketgan.",
+`Y|Hi, our invoice for load 55120 is 15 days past due.
+B|I'm sorry about that. Let me transfer you to accounting.
+A|Accounting, this is Linda.
+Y|Hi Linda, invoice 55120 is past due. Can you check the status?
+A|It was missing the POD. Can you send it again?
+Y|Sure, I'll send it right now. When can we expect the payment?
+A|Within five business days after we receive it.`],
+ ["To'lov tasdig'i","Buxgalteriya to'langan deyapti, siz ko'rmayapsiz.",
+`Y|Hi, we haven't received payment for load 77490.
+A|Our system shows it was paid last Friday.
+Y|Can you send me a remittance?
+A|Sure, what's your email?
+Y|billing at startrucking dot com.
+A|Sent.
+Y|Thank you, I see it now.`]],
+ s:[`Brokerdan to'lov shartlari va tez to'lov imkoniyatini so'rang.`,
+ `Invoice 20 kunga kechikdi. Buxgalteriyaga xushmuomala, lekin qat'iy qo'ng'iroq qiling.`,
+ `To'lov tasdig'ini (remittance) so'rang va emailingizni harflab ayting.`,
+ `Invoice'da detention va lumper bor. Ularni ovoz chiqarib tushuntiring.`,
+ `Buxgalteriya hujjat yetishmaydi dedi. Qaysi hujjat ekanini aniqlab, qachon yuborishingizni ayting.`]}
+]},
+{t:"Munosabatlar va ishga kirish", d:[
+{t:"Keyingi yuk va doimiy yo'nalish",
+ p:`The driver will be empty in Atlanta tomorrow.|Haydovchi ertaga Atlantada bo'shaydi.
+Do you have a reload?|Qayta yuk bormi?
+We're looking for a backhaul to Texas.|Texasga qaytish yukini qidiryapmiz.
+Do you have anything going back to Dallas?|Dallasga qaytadigan yuk bormi?
+Our truck is available tomorrow morning.|Mashinamiz ertaga ertalab bo'sh.
+We can pick up within 50 miles.|50 mil radiusda olishimiz mumkin.
+Would you consider a dedicated lane?|Doimiy yo'nalish haqida o'ylab ko'rasizmi?
+Can we run this lane every week?|Bu yo'nalishda har hafta ishlasak bo'ladimi?
+Keep us in mind for future loads.|Kelajakdagi yuklarda bizni unutmang.
+What areas do you cover?|Qaysi hududlarda ishlaysiz?`,
+ g:[["Qayta yuk","Haydovchi ertaga bo'shaydi, qaytish yukini qidiryapsiz.",
+`Y|Hi Sarah, our driver will be empty in Atlanta tomorrow morning. Do you have a reload?
+B|Where does he want to go?
+Y|We're looking for a backhaul to Texas.
+B|I have Atlanta to Houston. It picks up tomorrow at noon.
+Y|What's the rate?
+B|Twenty-three hundred.
+Y|Let's book it.`],
+ ["Doimiy yo'nalish","Siz har haftalik doimiy ish taklif qilasiz.",
+`Y|We've run this lane for you three times now. Would you consider a dedicated lane?
+B|What do you have in mind?
+Y|One truck every Monday from Dallas to Atlanta.
+B|That's possible. What rate?
+Y|Two thousand per load, every week.
+B|Let me talk to the shipper and get back to you.`],
+ ["Munosabat","Broker xizmatingizdan mamnun.",
+`B|Thanks for the good service on the last load.
+Y|Thank you. Please keep us in mind for future loads.
+B|Sure. What areas do you cover?
+Y|Mostly Texas, Oklahoma, and the Southeast.
+B|Great, I'll add you to my list.`]],
+ s:[`Haydovchi ertaga Chikagoda bo'shaydi. Brokerdan uyiga yaqin qaytish yukini so'rang.`,
+ `Har hafta bir yo'nalishda ishlash taklifini bering va narxni ayting.`,
+ `Kompaniyangiz qaysi hududlarda va qanday trailerlar bilan ishlashini tushuntiring.`,
+ `Broker bilan munosabatni mustahkamlash uchun qisqa, iliq suhbat qiling.`,
+ `3 ta brokerga ketma-ket qo'ng'iroq qilib, bir xil yuk so'rash mashqini qiling (har biri boshqacha javob beradi, deb tasavvur qiling).`]},
+
+{t:"Haydovchi bilan munosabat",
+ p:`When is my home time?|Qachon uyga ketaman?
+I want to go home this weekend.|Shu dam olish kuni uyga ketmoqchiman.
+I'll plan your loads towards home.|Yuklaringni uy tomonga rejalashtiraman.
+You'll be home on Friday.|Juma kuni uyda bo'lasan.
+The pay was lower than I expected.|To'lov kutganimdan kam bo'ldi.
+Let me check your settlement.|Hisob-kitobingni tekshiray.
+I understand your concern.|Xavotiringni tushunaman.
+I'm tired, I need a day off.|Charchadim, dam olish kuni kerak.
+Your safety comes first.|Sening xavfsizliging birinchi o'rinda.
+Thank you for your hard work.|Mehnating uchun rahmat.`,
+ g:[["Uyga ketish","Haydovchi uch haftadan beri yo'lda.",
+`D|I've been out for three weeks. I need to go home this weekend.
+Y|I understand. Where is home?
+D|Columbus, Ohio.
+Y|You're in Atlanta now. I'll find a load towards Ohio for Thursday.
+D|Will I be home by Friday?
+Y|That's the plan. I'll let you know today.`],
+ ["To'lov shikoyati","Haydovchi pul kam keldi deyapti.",
+`D|My pay last week was lower than I expected.
+Y|Let me check your settlement. Which load?
+D|The Dallas to Memphis load.
+Y|I see. There was a lumper reimbursement that we haven't added yet.
+D|So I'll get it?
+Y|Yes, it will be on next week's settlement. Sorry for the confusion.`],
+ ["Charchoq","Haydovchi bugun haydashni xohlamayapti.",
+`D|I'm really tired. I don't want to drive today.
+Y|Your safety comes first. Take the day off.
+D|What about the load?
+Y|It picks up tomorrow, so we're fine. Get some rest.
+D|Thanks, I appreciate it.
+Y|Thank you for your hard work.`]],
+ s:[`Haydovchi uyga ketmoqchi. Uning yo'nalishiga mos yuk rejasini tushuntiring.`,
+ `Haydovchi to'lovdan norozi. Tinglang, tekshirishni va'da qiling.`,
+ `Haydovchi charchagan. Xavfsizlikni birinchi qo'yib, rejani o'zgartiring.`,
+ `Haydovchi yomon yo'nalishga borishni istamayapti. Sababini tushuntirib, uni ishontiring.`,
+ `Yaxshi ishlagan haydovchini maqtang va keyingi haftaning rejasini ayting.`]},
+
+{t:"Ombor bilan to'g'ridan-to'g'ri gaplashish",
+ p:`What are your shipping hours?|Jo'natish soatlaringiz qanday?
+Do you need an appointment?|Oldindan vaqt olish kerakmi?
+Do you have truck parking on site?|Hududda truck to'xtash joyi bormi?
+Is overnight parking allowed?|Tunda to'xtashga ruxsat bormi?
+The driver can't find the entrance.|Haydovchi kirish joyini topa olmayapti.
+Can you give me directions?|Yo'l ko'rsatib bera olasizmi?
+Which entrance should the driver use?|Haydovchi qaysi kirishdan kirsin?
+The driver is at the gate.|Haydovchi darvoza oldida.
+What's the PO number?|PO raqami nechchi?
+Thank you for your help.|Yordamingiz uchun rahmat.`,
+ g:[["Ish soatlari","Siz omborga qo'ng'iroq qilasiz.",
+`Y|Hi, I'm calling from Star Trucking. What are your shipping hours?
+S|Monday to Friday, 6 AM to 4 PM.
+Y|Do you need an appointment?
+S|No, it's first come, first served.
+Y|Is there truck parking on site?
+S|Yes, but no overnight parking.
+Y|Thank you.`],
+ ["Yo'l ko'rsatish","Haydovchi kirishni topa olmayapti.",
+`Y|Our driver can't find the entrance. Can you give me directions?
+S|Where is he now?
+Y|On Main Street, near the gas station.
+S|Tell him to go past the front gate and turn right at the second entrance. The guard shack is there.
+Y|Second entrance on the right. Thank you!`],
+ ["PO raqami","Ombor raqamlarni so'rayapti.",
+`S|What's the PO number?
+Y|Let me check the rate con. It's 4500219.
+S|Thank you. And the pickup number?
+Y|It's PU-88310.
+S|Okay, he's checked in. Door 7.`]],
+ s:[`Omborga qo'ng'iroq qilib, ish soatlari, appointment va to'xtash joyini so'rang.`,
+ `Haydovchi adashdi. Ombordan yo'lni so'rab, haydovchiga tushuntiring.`,
+ `Ombor PO va pickup raqamlarini so'rayapti. Ularni aniq ayting.`,
+ `Haydovchi ertaroq keldi. Ombordan uni ertaroq qabul qilishni so'rang.`,
+ `Ombor xodimi qo'pol gapiryapti. Xotirjam va professional qoling.`]},
+
+{t:"Xavfsizlik va tekshiruvlar",
+ p:`The driver got pulled into an inspection.|Haydovchi tekshiruvga chaqirildi.
+The scale is open.|Tarozi punkti ochiq.
+Stay calm and be polite.|Xotirjam va xushmuomala bo'l.
+Do you have all your documents?|Barcha hujjatlaring bormi?
+Did you pass the inspection?|Tekshiruvdan o'tdingmi?
+He got a warning for a broken light.|Unga singan chiroq uchun ogohlantirish berildi.
+We need to fix it right away.|Buni darhol tuzatish kerak.
+Please send me the inspection report.|Tekshiruv hisobotini yubor.
+Do a pre-trip inspection every day.|Har kuni yo'lga chiqishdan oldin tekshir.
+Keep your logbook up to date.|Logbook'ni doim to'g'ri yurit.`,
+ g:[["Tekshiruv","Haydovchi tarozi punktida to'xtatildi.",
+`D|I got pulled into the scale for an inspection.
+Y|Okay, stay calm and be polite. Do you have all your documents?
+D|Yes, license, medical card, registration.
+Y|Good. Let me know when it's done.
+D|Done. They gave me a warning for a broken light.
+Y|We need to fix it right away. There's a shop at the next exit.`],
+ ["Toza tekshiruv","Haydovchi tekshiruvdan muammosiz o'tdi.",
+`Y|Did you pass the inspection?
+D|Yes, clean inspection, no violations.
+Y|Great job! Please send me the inspection report.
+D|Sending a picture now.
+Y|Thanks. Clean inspections are good for our safety score.`],
+ ["Eslatma","Siz haydovchiga xavfsizlik haqida eslatasiz.",
+`Y|Mike, before you leave, please do a full pre-trip inspection.
+D|I always do.
+Y|I know, but last week we had a tire problem. Check your tires and lights carefully.
+D|Okay, will do.
+Y|And keep your logbook up to date. DOT is checking a lot this week.`]],
+ s:[`Haydovchi tekshiruvda. Uni tinchlantirib, qanday hujjatlar kerakligini so'rang.`,
+ `Haydovchi ogohlantirish oldi. Tuzatish rejasini tushuntiring.`,
+ `Haydovchini toza tekshiruv uchun maqtang va hisobot so'rang.`,
+ `Haydovchiga pre-trip tekshiruvining muhimligini tushuntiring.`,
+ `Brokerga tekshiruv sabab 1 soat kechikishni xabar qiling.`]},
+
+{t:"Ish intervyusi",
+ p:`Tell me about yourself.|O'zingiz haqingizda gapirib bering.
+Why do you want to work in logistics?|Nega logistikada ishlamoqchisiz?
+What do you know about dispatching?|Dispetcherlik haqida nimalarni bilasiz?
+How do you handle stress?|Stressni qanday yengasiz?
+Are you ready to work night shifts?|Tungi smenada ishlashga tayyormisiz?
+What would you do if a driver is late?|Haydovchi kechiksa nima qilasiz?
+I'm a fast learner.|Men tez o'rganaman.
+I stay calm under pressure.|Bosim ostida xotirjam qolaman.
+Do you have any questions for us?|Bizga savollaringiz bormi?
+I'm available to start immediately.|Darhol ish boshlay olaman.`,
+ g:[["Tanishuv","Intervyu boshlanmoqda.",
+`I|Hi, thanks for coming in. Tell me about yourself.
+Y|Thank you for having me. My name is Alex. I'm from Tashkent. I have been studying US logistics: dispatching, HOS rules, rates, and geography.
+I|Why do you want to work in logistics?
+Y|I like solving problems and working with people. Logistics is a fast-growing field, and I want to build a career in it.
+I|Are you ready to work night shifts?
+Y|Yes, I've already adjusted my schedule.`],
+ ["Vaziyatli savollar","Intervyuer bilimingizni tekshirmoqda.",
+`I|What would you do if the driver is late for pickup?
+Y|First, I'd call the driver to get his location and new ETA. Then I'd inform the broker right away and ask if the appointment can be moved.
+I|And if the broker offers a very low rate?
+Y|I'd calculate the rate per mile, explain our costs, and make a counter offer. If it's still too low, I'd politely decline.
+I|Good. What does HOS mean?
+Y|Hours of Service. A driver can drive 11 hours within a 14-hour window, after a 10-hour break.`],
+ ["Yakun","Intervyu tugamoqda.",
+`I|Do you have any questions for us?
+Y|Yes. What does a typical shift look like?
+I|You'll manage about ten trucks and work with brokers all night.
+Y|Is there training for new dispatchers?
+I|Yes, two weeks of training.
+I|When can you start?
+Y|I'm available to start immediately.
+I|Great, we'll be in touch.`]],
+ s:[`"Tell me about yourself" savoliga 1 daqiqalik javob bering. 5 marta yozib oling.`,
+ `"What would you do if a driver breaks down?" savoliga javob bering.`,
+ `"How do you handle stress?" savoliga misol bilan javob bering.`,
+ `Intervyuerga 3 ta savol bering: smena, o'qitish, maosh tuzilishi.`,
+ `RPM, deadhead, detention, TONU nimaligini intervyuerga ingliz tilida tushuntiring.`]},
+
+{t:"To'liq smena simulyatsiyasi",
+ tip:`Bugun hammasini birlashtirasiz. Dialoglardan keyin 30 daqiqa davomida o'zingizni haqiqiy smenada deb tasavvur qiling: ketma-ket broker, haydovchi va omborga "qo'ng'iroq qiling".`,
+ p:`Here's the handoff.|Mana smena topshirig'i.
+Truck 101 is loaded and rolling.|101-mashina yuklangan va yo'lda.
+Truck 205 is waiting at the shipper.|205-mashina shipperda kutyapti.
+Detention already started.|Detention allaqachon boshlandi.
+Truck 310 needs a load for tomorrow.|310-mashinaga ertaga yuk kerak.
+I'll take care of it.|Men hal qilaman.
+POD is uploaded.|POD yuklandi.
+Rate con is signed.|Rate con imzolandi.
+I already told the broker.|Brokerga allaqachon aytdim.
+Have a good night.|Tuningiz yaxshi o'tsin.`,
+ g:[["Smena boshlanishi","Hamkasbingiz sizga ishni topshiryapti.",
+`C|Hey Alex, here's the handoff. Truck 101 is loaded and rolling to Atlanta. Truck 205 is waiting at the shipper in Memphis.
+Y|How long has 205 been waiting?
+C|Two and a half hours. Detention already started.
+Y|Got it. Anything else?
+C|Truck 310 needs a load out of Dallas tomorrow.
+Y|Okay, I'll take care of it. Thanks.`],
+ ["Bir qo'ng'iroqda bir nechta masala","Broker bilan bir vaqtda uch masalani hal qilasiz.",
+`Y|Hi Sarah, Alex with Star Trucking. Quick update on load 77490: the driver is 60 miles out, ETA 9 AM.
+B|Thanks. Any update on the Memphis load?
+Y|Truck 205 has been waiting three hours. I'll send the detention times.
+B|Okay. Also, do you need a load out of Dallas?
+Y|Yes, for tomorrow. What do you have?
+B|Dallas to Denver, twenty-four hundred.
+Y|It's about 800 miles. Can you do twenty-six?
+B|Twenty-five.
+Y|Deal. Send me the rate con.`],
+ ["Smena tugashi","Siz ishni keyingi dispetcherga topshirasiz.",
+`Y|Hey Jake, here's my handoff. Truck 101 delivered, POD is uploaded.
+C|Nice.
+Y|Truck 205 is loaded with three hours of detention. I already told the broker.
+C|And 310?
+Y|Booked Dallas to Denver for twenty-five hundred. It picks up at 8 AM. Rate con is signed.
+C|Perfect. Have a good night.
+Y|Thanks, you too.`]],
+ s:[`Hamkasbingizga 3 ta mashina holatini topshiring: biri yo'lda, biri kutyapti, biri bo'sh.`,
+ `Bir brokerga qo'ng'iroqda 3 masalani hal qiling: update, detention, yangi yuk.`,
+ `10 daqiqalik simulyatsiya: haydovchi buzildi → broker → road service → yangi ETA.`,
+ `30 kunlik eng yoqqan 5 ta iborangizni ishlatib, 3 daqiqa erkin gapiring.`,
+ `1-kundagi yozuvingiz bilan bugungi yozuvingizni solishtiring va farqni daftarga yozing.`]}
+]}
+];
+
+const BLOCKS = [
+ {id:"ph", name:"Iboralar", time:"30 daqiqa"},
+ {id:"lis", name:"Dialoglarni tinglash va takrorlash", time:"45 daqiqa"},
+ {id:"role", name:"Rol o'ynash", time:"45 daqiqa"},
+ {id:"imp", name:"Erkin gapirish", time:"45 daqiqa"},
+ {id:"rev", name:"Yozuvni tahlil qilish", time:"15 daqiqa"}
+];
+
+/* Ma'lumotni tayyorlash */
+const days = [];
+WEEKS.forEach((w,wi)=>w.d.forEach(d=>{
+  const phrases = d.p.trim().split("\n").map(l=>{const i=l.indexOf("|");return [l.slice(0,i).trim(), l.slice(i+1).trim()];});
+  const dialogs = d.g.map(g=>({t:g[0], v:g[1], lines:g[2].trim().split("\n").map(l=>{const i=l.indexOf("|");return {w:l.slice(0,i).trim(), x:l.slice(i+1).trim()};})}));
+  days.push({n:days.length+1, wi, week:w.t, t:d.t, tip:d.tip||"", phrases, dialogs, sc:d.s});
+}));
+const TOTAL = days.length;
+
+const KEY = "logistika-speaking-v1";
+let S = {c:{}, cur:null, rate:"0.9", hide:false};
+try{ const raw = localStorage.getItem(KEY); if(raw) S = Object.assign(S, JSON.parse(raw)); }catch(e){}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+function ids(d){ return BLOCKS.map(b=>d.n+"-"+b.id); }
+function doneCount(d){ return ids(d).filter(id=>S.c[id]).length; }
+function isDone(d){ return doneCount(d)===BLOCKS.length; }
+function firstOpen(){ const d = days.find(x=>!isDone(x)); return d ? d.n : TOTAL; }
+if(!S.cur || S.cur<1 || S.cur>TOTAL) S.cur = firstOpen();
+
+const $ = s=>document.querySelector(s);
+const esc = s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+/* Ovoz */
+const TTS = "speechSynthesis" in window;
+let voices = [], vA = null, vB = null, runId = 0;
+function loadVoices(){
+  if(!TTS) return;
+  voices = speechSynthesis.getVoices().filter(v=>/^en[-_]/i.test(v.lang));
+  const us = voices.filter(v=>/en[-_]US/i.test(v.lang));
+  const pool = us.length ? us : voices;
+  vA = pool[0] || null;
+  vB = pool.find(v=>v!==vA) || voices.find(v=>v!==vA) || vA;
+}
+if(TTS){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function clean(t){ return t.replace(/\([^)]*\)\s*/g,"").trim(); }
+function speak(text, other){
+  return new Promise(res=>{
+    if(!TTS){ res(); return; }
+    const u = new SpeechSynthesisUtterance(clean(text));
+    u.lang = "en-US"; u.rate = parseFloat(S.rate)||0.9;
+    const v = other ? vB : vA; if(v) u.voice = v;
+    if(other && vA===vB) u.pitch = 0.8;
+    u.onend = res; u.onerror = res;
+    speechSynthesis.speak(u);
+  });
+}
+function stopAll(){ runId++; if(TTS) speechSynthesis.cancel(); document.querySelectorAll(".ln.now").forEach(e=>e.classList.remove("now")); }
+const wait = ms=>new Promise(r=>setTimeout(r,ms));
+
+async function playDialog(di, role){
+  stopAll(); const my = runId;
+  const d = days[S.cur-1], dlg = d.dialogs[di];
+  const box = document.getElementById("dlg-"+di);
+  const rows = box.querySelectorAll(".ln");
+  for(let i=0;i<dlg.lines.length;i++){
+    if(my!==runId) return;
+    rows.forEach(r=>r.classList.remove("now"));
+    const row = rows[i]; row.classList.add("now");
+    row.scrollIntoView({block:"nearest", behavior:"smooth"});
+    const L = dlg.lines[i];
+    if(role && L.w==="Y"){
+      const words = clean(L.x).split(/\s+/).length;
+      await wait(Math.max(2500, words*550 + 1500) / (parseFloat(S.rate)||0.9));
+      if(my!==runId) return;
+      row.classList.add("shown");
+      await speak(L.x, false);
+    } else {
+      await speak(L.x, L.w!=="Y");
+    }
+    await wait(250);
+  }
+  rows.forEach(r=>r.classList.remove("now"));
+}
+
+/* Ko'rinishlar */
+function renderHeader(){
+  const n = days.filter(isDone).length;
+  $("#bar").style.width = (n/TOTAL*100)+"%";
+  $("#exit").textContent = n+" / "+TOTAL+" kun";
+}
+function block(d,b,inner){
+  const id = d.n+"-"+b.id, on = !!S.c[id];
+  return '<section class="blk'+(on?' done':'')+'"><label class="bh"><input type="checkbox" data-id="'+id+'"'+(on?' checked':'')+'><strong>'+b.name+'</strong><em>'+b.time+'</em></label><div class="bb">'+inner+'</div></section>';
+}
+function sayBtn(text, other){ return TTS ? '<button class="say" data-say="'+esc(text)+'"'+(other?' data-other="1"':'')+' aria-label="Tinglash">▶</button>' : ''; }
+
+function dialogHtml(d, di, withRole){
+  const g = d.dialogs[di];
+  let h = '<div class="dlg'+(S.hide&&withRole?' hidemine':'')+'" id="dlg-'+di+'"><div class="dlg-h"><b>'+(di+1)+'. '+esc(g.t)+'</b><span>Vaziyat: '+esc(g.v)+'</span>';
+  if(TTS){
+    h += '<div class="dlg-c"><button class="btn primary" data-play="'+di+'">Dialogni tinglash</button>';
+    if(withRole) h += '<button class="btn" data-role="'+di+'">Rol rejimi: men gapiraman</button>';
+    h += '<button class="btn" data-stop="1">To\'xtatish</button></div>';
+  }
+  h += '</div>';
+  g.lines.forEach(L=>{
+    const you = L.w==="Y";
+    h += '<div class="ln'+(you?' you':'')+'"><span class="who">'+WHO[L.w]+'</span><span class="tx">'+esc(L.x)+'</span>'+sayBtn(L.x, !you)+'</div>';
+  });
+  return h + '</div>';
+}
+
+function renderToday(){
+  const d = days[S.cur-1];
+  let h = '<div class="dayhead"><div class="marker"><small>kun</small><span>'+d.n+'</span></div><div><div class="week">'+(d.wi+1)+'-hafta: '+d.week+'</div><h2>'+esc(d.t)+'</h2></div></div>';
+  h += '<p class="schedule">Jami 3 soat. Bloklarni tartib bilan bajaring. Telefoningizda ovoz yozish dasturini tayyorlab qo\'ying.</p>';
+  if(d.tip) h += '<div class="tip">'+esc(d.tip)+'</div>';
+  if(TTS){
+    h += '<div class="toolbar"><label>Ovoz tezligi <select id="rate"><option value="0.7">Sekin</option><option value="0.9">O\'rtacha</option><option value="1">Tabiiy</option></select></label>';
+    h += '<label><input type="checkbox" id="hide"'+(S.hide?' checked':'')+'> Rol o\'ynashda mening qatorlarimni yashirish</label></div>';
+  }
+
+  let ph = '<p class="how">Har bir iborani tinglang (▶), keyin 10 marta ovoz chiqarib takrorlang. Oxirida tarjimasini o\'qib, inglizchasini xotiradan ayting.</p>';
+  d.phrases.forEach(p=>{ ph += '<div class="ph">'+sayBtn(p[0])+'<div><div class="en">'+esc(p[0])+'</div><div class="uz">'+esc(p[1])+'</div></div></div>'; });
+  h += block(d,BLOCKS[0],ph);
+
+  let lis = '<p class="how">Har bir dialogni 2 marta to\'liq tinglang. Keyin har bir qatorni alohida tinglab (▶), darhol ortidan xuddi shunday ohangda takrorlang (shadowing). Har bir dialog ≈15 daqiqa.</p>';
+  d.dialogs.forEach((_,i)=>{ lis += dialogHtml(d,i,false); });
+  h += block(d,BLOCKS[1],lis);
+
+  let role = '<p class="how">Siz dispetchersiz (sariq qatorlar). "Rol rejimi" ni bosing: suhbatdosh gapiradi, sizning navbatingizda ovoz to\'xtaydi va siz qatoringizni xotiradan aytasiz. Keyin to\'g\'ri variant eshittiriladi. Har bir dialogni 3 marta bajaring, oxirgisini telefonga yozib oling.'+(TTS?'':' Brauzeringizda ovoz ishlamaydi: suhbatdosh qatorlarini o\'zingiz o\'qing, o\'zingiznikini yopib ayting.')+'</p>';
+  d.dialogs.forEach((_,i)=>{ role += dialogHtml(d,i,true).replace(/id="dlg-/,'id="dlgr-'); });
+  h += block(d,BLOCKS[2],role);
+
+  let imp = '<p class="how">Skriptsiz gapirasiz. Har bir vaziyat uchun: 1 daqiqa o\'ylang, keyin 2 daqiqa ingliz tilida gapiring va yozib oling. Ikkala tomonni ham o\'zingiz gapirishingiz mumkin. Har bir vaziyatni 2 marta bajaring.</p>';
+  d.sc.forEach((s,i)=>{ imp += '<div class="sc"><b>'+(i+1)+'.</b> '+esc(s)+'</div>'; });
+  h += block(d,BLOCKS[3],imp);
+
+  h += block(d,BLOCKS[4],'<ol class="steps"><li>Bugungi yozuvlaringizdan 2 tasini tinglang.</li><li>3 ta xatoni daftarga yozing: talaffuz, grammatika yoki to\'xtab qolgan joy.</li><li>Ertangi kun boshida shu 3 ta joyni 5 martadan qayta ayting.</li></ol>');
+
+  if(isDone(d)) h += '<div class="complete">'+d.n+'-kun yakunlandi.'+(d.n===TOTAL?' 30 kun tugadi. Endi har kuni 2–3 ta eski dialogni rol rejimida takrorlang.':' Ertaga '+(d.n+1)+'-kunni oching.')+'</div>';
+  h += '<div class="navrow"><button class="btn" data-go="'+(d.n-1)+'"'+(d.n===1?' disabled':'')+'>Oldingi kun</button><button class="btn primary" data-go="'+(d.n+1)+'"'+(d.n===TOTAL?' disabled':'')+'>Keyingi kun</button></div>';
+  $("#today").innerHTML = h;
+  const r = $("#rate"); if(r) r.value = S.rate;
+}
+
+function renderPlan(){
+  let h = "";
+  WEEKS.forEach((w,wi)=>{
+    const wd = days.filter(d=>d.wi===wi);
+    h += '<div class="wk"><h3><span>'+(wi+1)+'-hafta: '+w.t+'</span><em>'+wd.filter(isDone).length+' / '+wd.length+'</em></h3><div class="tiles">';
+    wd.forEach(d=>{ h += '<button class="tile'+(isDone(d)?' done':'')+(d.n===S.cur?' cur':'')+'" data-open="'+d.n+'"><b>'+d.n+'</b>'+esc(d.t)+'<span class="p">'+doneCount(d)+' / '+BLOCKS.length+'</span></button>'; });
+    h += '</div></div>';
+  });
+  $("#plan").innerHTML = h;
+}
+
+const BANK = []; days.forEach(d=>d.phrases.forEach(p=>BANK.push({en:p[0],uz:p[1],n:d.n,t:d.t})));
+function renderBank(){
+  const q = $("#q").value.trim().toLowerCase();
+  const list = BANK.filter(b=>!q || (b.en+" "+b.uz+" "+b.t).toLowerCase().includes(q));
+  $("#bcount").textContent = list.length+" ta ibora";
+  $("#blist").innerHTML = list.length ? list.map(b=>'<div class="ph">'+sayBtn(b.en)+'<div><div class="en">'+esc(b.en)+'</div><div class="uz">'+esc(b.uz)+'</div><small>'+b.n+'-kun: '+esc(b.t)+'</small></div></div>').join("") : '<p class="empty">Hech narsa topilmadi. Boshqa so\'z bilan qidiring.</p>';
+}
+
+function renderAll(){ renderHeader(); renderToday(); renderPlan(); renderBank(); }
+function showTab(name){
+  stopAll();
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected", b.dataset.tab===name?"true":"false"));
+  ["today","plan","bank"].forEach(t=>{ document.getElementById(t).hidden = t!==name; });
+}
+
+document.addEventListener("change", e=>{
+  const t = e.target;
+  if(t.dataset.id){ if(t.checked) S.c[t.dataset.id]=true; else delete S.c[t.dataset.id]; save(); renderHeader(); renderPlan(); t.closest(".blk").classList.toggle("done", t.checked); }
+  if(t.id==="rate"){ S.rate = t.value; save(); }
+  if(t.id==="hide"){ S.hide = t.checked; save(); stopAll(); renderToday(); }
+});
+document.addEventListener("click", e=>{
+  const say = e.target.closest("[data-say]");
+  if(say){ stopAll(); speak(say.dataset.say, !!say.dataset.other); return; }
+  const play = e.target.closest("[data-play]");
+  if(play){ const box = play.closest(".dlg"); box.id.startsWith("dlgr-") ? playIn(box, +play.dataset.play, false) : playDialog(+play.dataset.play, false); return; }
+  const role = e.target.closest("[data-role]");
+  if(role){ const box = role.closest(".dlg"); box.querySelectorAll(".ln.you").forEach(r=>r.classList.remove("shown")); playIn(box, +role.dataset.role, true); return; }
+  if(e.target.closest("[data-stop]")){ stopAll(); return; }
+  const hidden = e.target.closest(".hidemine .ln.you");
+  if(hidden && e.target.closest(".tx")){ hidden.classList.add("shown"); return; }
+  const go = e.target.closest("[data-go]");
+  if(go && !go.disabled){ stopAll(); S.cur = +go.dataset.go; save(); renderToday(); renderPlan(); window.scrollTo(0,0); return; }
+  const op = e.target.closest("[data-open]");
+  if(op){ S.cur = +op.dataset.open; save(); renderToday(); renderPlan(); showTab("today"); window.scrollTo(0,0); return; }
+  const tab = e.target.closest("[data-tab]");
+  if(tab) showTab(tab.dataset.tab);
+});
+
+/* Rol bloki uchun alohida ijro (o'z qutisi ichida) */
+async function playIn(box, di, role){
+  stopAll(); const my = runId;
+  const dlg = days[S.cur-1].dialogs[di];
+  const rows = box.querySelectorAll(".ln");
+  for(let i=0;i<dlg.lines.length;i++){
+    if(my!==runId) return;
+    rows.forEach(r=>r.classList.remove("now"));
+    rows[i].classList.add("now");
+    rows[i].scrollIntoView({block:"nearest", behavior:"smooth"});
+    const L = dlg.lines[i];
+    if(role && L.w==="Y"){
+      const words = clean(L.x).split(/\s+/).length;
+      await wait(Math.max(2500, words*550 + 1500) / (parseFloat(S.rate)||0.9));
+      if(my!==runId) return;
+      rows[i].classList.add("shown");
+      await speak(L.x, false);
+    } else await speak(L.x, L.w!=="Y");
+    await wait(250);
+  }
+  rows.forEach(r=>r.classList.remove("now"));
+}
+
+$("#q").addEventListener("input", renderBank);
+$("#reset").addEventListener("click", ()=>{
+  if(confirm("Barcha belgilangan bloklar o'chiriladi. Davom etasizmi?")){ S.c = {}; S.cur = 1; save(); renderAll(); showTab("today"); }
+});
+if(!TTS) $("#ttsnote").textContent = "Progress shu brauzerda saqlanadi. Bu brauzerda ovoz funksiyasi yo'q: Chrome yoki Safari'da oching.";
+renderAll();
+</script>
+</body>
+</html>
